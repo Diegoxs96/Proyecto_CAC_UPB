@@ -1,0 +1,8 @@
+Coloca aquí la imagen del menú con el nombre exacto:
+  menu_imagen.jpg
+
+Esa ruta está referenciada en Menu.fxml como:
+  @/edu/co/diegoxs96/images/menu_imagen.jpg
+
+Al compilar con Maven, esta carpeta queda dentro del JAR
+y funciona en cualquier computador sin cambiar rutas.
