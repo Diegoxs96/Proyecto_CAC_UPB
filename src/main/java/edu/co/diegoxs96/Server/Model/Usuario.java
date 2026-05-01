@@ -9,23 +9,34 @@ public abstract class Usuario implements IUsuario, Serializable {
     protected String numeroIdentificacion;
     protected String nombres;
     protected String apellidos;
-    protected String contrasena;
+    protected String contraseña;
 
-    public Usuario(int id, String numeroIdentificacion, String nombres, String apellidos, String contrasena) {
+    public Usuario(int id, String numeroIdentificacion, String nombres, String apellidos, String contraseña) {
         this.id                   = id;
         this.numeroIdentificacion = numeroIdentificacion;
         this.nombres              = nombres;
         this.apellidos            = apellidos;
-        this.contrasena           = contrasena;
+        this.contraseña           = contraseña;
     }
 
-    public int    getId()                   { return id; }
-    public String getNumeroIdentificacion() { return numeroIdentificacion; }
-    public String getNombres()              { return nombres; }
-    public String getApellidos()            { return apellidos; }
+    public int    getId()  {
+        return id;
+    }
+    public String getNumeroIdentificacion() {
+        return numeroIdentificacion;
+    }
+    public String getNombres() {
+        return nombres;
+    }
+    public String getApellidos() {
+        return apellidos;
+    }
+    public String getContraseña(){
+        return contraseña;
+    }
 
     @Override
-    public boolean autenticar(String contrasena) { return this.contrasena.equals(contrasena); }
+    public boolean autenticar(String contrasena) { return this.contraseña.equals(contrasena); }
 
     @Override
     public String getNombreCompleto() { return nombres + " " + apellidos; }

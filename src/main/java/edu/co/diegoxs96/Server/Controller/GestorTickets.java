@@ -1,5 +1,6 @@
 package edu.co.diegoxs96.Server.Controller;
 
+import edu.co.diegoxs96.Json.TicketJson;
 import edu.co.diegoxs96.Server.Model.*;
 import edu.co.diegoxs96.structures.linkedlist.singly.LinkedList;
 import edu.co.diegoxs96.structures.model.iterator.Iterator;
@@ -12,6 +13,7 @@ public class GestorTickets {
 
     private final LinkedList<Ticket> ticketsActivos = new LinkedList<>();
     private final GestorBancos       gestorBancos;
+    private final TicketJson         repo           = new TicketJson();
     private int contadorTurno = 1;
     private int contadorId    = 1;
 
@@ -29,12 +31,15 @@ public class GestorTickets {
         banco.agregarTicket(t);
         ticketsActivos.add(t);
         cita.setTicket(t);
+        guardarEnJSON();
         return t;
     }
 
     public int calcularPrioridad(Cliente c) { return c.getPrioridad(); }
 
-    public BancoServicio asignarBanco(Ticket t) { return gestorBancos.obtenerDisponible(t.getCita().getTipoCita()); }
+    public BancoServicio asignarBanco(Ticket t) {
+        return gestorBancos.obtenerDisponible(t.getCita().getTipoCita());
+    }
 
     public Ticket buscarTicket(int id) {
         Iterator<Ticket> it = ticketsActivos.iterator();
@@ -46,4 +51,6 @@ public class GestorTickets {
     }
 
     public LinkedList<Ticket> getTicketsActivos() { return ticketsActivos; }
+
+    public void guardarEnJSON() { repo.guardar(ticketsActivos); }
 }
