@@ -15,14 +15,21 @@ public class App extends Application {
                 : getParameters().getRaw().get(0);
 
         if (mode.equals("client")) {
-            // Carga la vista de login del compañero
+            // Carga la vista del Login
             Parent root = FXMLLoader.load(
-                getClass().getResource("/edu/co/diegoxs96/views/InicioDeSesion/login.fxml"));
+                    getClass().getResource("/edu/co/diegoxs96/views/InicioDeSesion/login.fxml"));
             stage.setTitle("CAC-UPB — Cliente");
             stage.setScene(new Scene(root));
             stage.show();
+        } else if (mode.equals("monitor")) {
+            // Carga la pantalla de turno
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/edu/co/diegoxs96/views/Monitor/PantallaTurno.fxml"));
+            stage.setTitle("CAC-UPB — Monitor");
+            stage.setScene(new Scene(root));
+            stage.show();
         } else {
-            // Servidor
+            // Carga la vista del Server
             edu.co.diegoxs96.Server.Factory.ServerFactory.create().show(stage);
         }
     }
