@@ -25,28 +25,18 @@ public class RegistrerController {
 
     private int tipoSeleccionado = Cliente.TIPO_ESTANDAR;
 
-    @FXML
-    private void handleTipoEstandar() {
-        tipoSeleccionado = Cliente.TIPO_ESTANDAR;
-        menuTipo.setText("Estándar");
-    }
-
-    @FXML
-    private void handleTipoPremium() {
-        tipoSeleccionado = Cliente.TIPO_PREMIUM;
-        menuTipo.setText("Premium");
-    }
+    @FXML private void handleTipoEstandar() { tipoSeleccionado = Cliente.TIPO_ESTANDAR; menuTipo.setText("Estándar"); }
+    @FXML private void handleTipoPremium()  { tipoSeleccionado = Cliente.TIPO_PREMIUM;  menuTipo.setText("Premium"); }
 
     @FXML
     private void handleRegistrar() {
-        String id        = fieldIdentificacion.getText().trim();
-        String nombres   = fieldNombres.getText().trim();
-        String apellidos = fieldApellidos.getText().trim();
-        String edadStr   = fieldEdad.getText().trim();
-        String contrasena= fieldContrasena.getText().trim();
-        String direccion = fieldDireccion.getText().trim();
+        String id         = fieldIdentificacion.getText().trim();
+        String nombres    = fieldNombres.getText().trim();
+        String apellidos  = fieldApellidos.getText().trim();
+        String edadStr    = fieldEdad.getText().trim();
+        String contrasena = fieldContrasena.getText().trim();
+        String direccion  = fieldDireccion.getText().trim();
 
-        // Validaciones
         if (id.isEmpty() || nombres.isEmpty() || apellidos.isEmpty()
                 || edadStr.isEmpty() || contrasena.isEmpty() || direccion.isEmpty()) {
             labelError.setText("Todos los campos son obligatorios.");
@@ -62,8 +52,6 @@ public class RegistrerController {
             return;
         }
 
-        // Registro — GestorClientes vive en el servidor, aquí se llama vía RMI
-        // Por ahora se conecta directamente hasta que se exponga el método por RMI
         GestorClientes gestorClientes = new GestorClientes();
         Cliente cliente = gestorClientes.registrarCliente(
                 id, nombres, apellidos, contrasena, edad, direccion, tipoSeleccionado);
@@ -76,23 +64,19 @@ public class RegistrerController {
         labelError.setStyle("-fx-text-fill: green;");
         labelError.setText("Cuenta creada exitosamente. Redirigiendo...");
 
-        // Ir al login después del registro
         javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(
                 javafx.util.Duration.seconds(1.5));
         pause.setOnFinished(e -> handleIrALogin());
         pause.play();
     }
 
-    @FXML
-    private void handleCancelar() {
-        handleIrALogin();
-    }
+    @FXML private void handleCancelar() { handleIrALogin(); }
 
     @FXML
     private void handleIrALogin() {
         try {
             Parent root = FXMLLoader.load(
-                getClass().getResource("/edu/co/diegoxs96/views/InicioDeSesion/login.fxml"));
+                    getClass().getResource("/edu/co/diegoxs96/views/InicioDeSesion/login.fxml"));
             Stage stage = (Stage) fieldNombres.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {

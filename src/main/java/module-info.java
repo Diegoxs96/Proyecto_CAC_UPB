@@ -5,7 +5,7 @@ module UPB_CAC {
     requires com.google.gson;
 
     opens edu.co.diegoxs96 to javafx.fxml;
-    opens edu.co.diegoxs96.Client.Controller to javafx.fxml;
+    opens edu.co.diegoxs96.Client.Controller to javafx.fxml, com.google.gson;
     opens edu.co.diegoxs96.Server.Controller to javafx.fxml;
     opens edu.co.diegoxs96.Server.Model to javafx.fxml, java.rmi, com.google.gson;
     opens edu.co.diegoxs96.Server.View to javafx.fxml;

@@ -1,5 +1,7 @@
 package edu.co.diegoxs96.Client.Controller;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import edu.co.diegoxs96.Environment.Environment;
 import edu.co.diegoxs96.Server.Model.TicketInterface;
 import javafx.fxml.FXML;
@@ -11,7 +13,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.*;
+import java.lang.reflect.Type;
 import java.rmi.Naming;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginViewController {
 
@@ -20,6 +26,12 @@ public class LoginViewController {
     @FXML private Label         labelError;
 
     private TicketInterface service;
+
+    // DTO interno para leer el JSON de admins
+    private static class AdminDTO {
+        String numeroIdentificacion;
+        String contrasena;
+    }
 
     @FXML
     private void initialize() {
@@ -36,19 +48,39 @@ public class LoginViewController {
             return;
         }
 
-        // Validación básica — se expande cuando el servidor exponga login vía RMI
         if (service == null) {
             labelError.setText("Sin conexión al servidor.");
             return;
         }
 
-        // Por ahora acepta cualquier id numérico con contraseña no vacía
-        // Tu compañero conectará esto a LoginController cuando se exponga por RMI
         try {
             Integer.parseInt(id);
-            irAlMenu();
         } catch (NumberFormatException e) {
-            labelError.setText("El ID debe ser numérico.");
+            // Puede ser admin con id no numérico — seguimos igual
+        }
+
+        if (esAdmin(id, password)) {
+            irAMenuAdmin();
+        } else {
+            irAlMenu();
+        }
+    }
+
+    //Verifica si el id y contraseña están en data/admins.json
+    private boolean esAdmin(String id, String contrasena) {
+        File file = new File("data/admins.json");
+        if (!file.exists()) return false;
+
+        try (BufferedReader r = new BufferedReader(new FileReader(file))) {
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = r.readLine()) != null) sb.append(line);
+            String json = sb.toString();
+            return json.contains("\"" + id + "\"")
+                    && json.contains("\"" + contrasena + "\"");
+        } catch (IOException e) {
+            System.out.println("[LOGIN] Error leyendo admins.json: " + e.getMessage());
+            return false;
         }
     }
 
@@ -56,7 +88,7 @@ public class LoginViewController {
     private void handleIrARegistro() {
         try {
             Parent root = FXMLLoader.load(
-                getClass().getResource("/edu/co/diegoxs96/views/InicioDeSesion/Registrer.fxml"));
+                    getClass().getResource("/edu/co/diegoxs96/views/InicioDeSesion/Registrer.fxml"));
             Stage stage = (Stage) fieldIdentificacion.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {
@@ -66,12 +98,25 @@ public class LoginViewController {
 
     private void irAlMenu() {
         try {
-            Parent root = FXMLLoader.load(
-                getClass().getResource("/edu/co/diegoxs96/views/Menu/Menu.fxml"));
+            var url = getClass().getResource("/edu/co/diegoxs96/views/Cliente/Menu.fxml");
+            Parent root = FXMLLoader.load(url);
             Stage stage = (Stage) fieldIdentificacion.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {
-            labelError.setText("Error cargando menú: " + e.getMessage());
+            e.printStackTrace();
+            labelError.setText("Error: " + e.getMessage());
+        }
+    }
+
+    private void irAMenuAdmin() {
+        try {
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/edu/co/diegoxs96/views/Admin/MenuAdmin.fxml"));
+            Stage stage = (Stage) fieldIdentificacion.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+            labelError.setText("Error cargando menú admin: " + e.getMessage());
         }
     }
 
@@ -81,7 +126,6 @@ public class LoginViewController {
             String uri = "//" + env.getIp() + ":" + env.getPort() + "/" + env.getServiceName();
             service = (TicketInterface) Naming.lookup(uri);
         } catch (Exception e) {
-            // El servidor puede no estar listo aún — se reintenta al hacer login
             System.out.println("[LOGIN] Servidor no disponible aún.");
         }
     }
