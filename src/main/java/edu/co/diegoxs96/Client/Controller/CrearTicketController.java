@@ -85,7 +85,7 @@ public class CrearTicketController {
     @FXML private void handleEditarPerfil()      { navegar("/edu/co/diegoxs96/views/Cliente/EditarPerfilCliente.fxml"); }
     @FXML private void handleSolicitarCita()     { System.out.println("[TICKET] Solicitar cita — pendiente"); }
     @FXML private void handleVerCita()           { System.out.println("[TICKET] Ver cita — pendiente"); }
-    @FXML private void handleModificarCita()     { System.out.println("[TICKET] Modificar cita — pendiente"); }
+    @FXML private void handleModificarCita()     { navegar("/edu/co/diegoxs96/views/Cliente/ModificarCita.fxml"); }
     @FXML private void handleObtenerTicket()     { System.out.println("[TICKET] Ya estás aquí"); }
     @FXML private void handleNotificacion()      { System.out.println("[TICKET] Notificación — pendiente"); }
     @FXML private void handleConsultarTurno()    { navegar("/edu/co/diegoxs96/views/Cliente/ConsultarTurno.fxml"); }

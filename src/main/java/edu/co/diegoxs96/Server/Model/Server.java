@@ -37,6 +37,9 @@ public class Server {
             try { LocateRegistry.createRegistry(port); }
             catch (RemoteException e) { LocateRegistry.getRegistry(port); }
 
+            // Cargar citas persistidas (necesita clientes ya cargados)
+            gestorCitas.cargarDesdejSON(gestorClientes.listarTodos());
+
             TicketService service = new TicketService(gestorClientes, gestorCitas, gestorTickets, gestorBancos);
             Naming.rebind(uri, service);
             return true;

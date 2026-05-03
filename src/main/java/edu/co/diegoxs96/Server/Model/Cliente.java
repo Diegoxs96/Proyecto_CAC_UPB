@@ -22,6 +22,7 @@ public class Cliente extends Usuario implements Comparable<Cliente>, Serializabl
 
     public int    getEdad()        { return edad; }
     public String getDireccion()   { return direccion; }
+    public void   setDireccion(String v) { this.direccion = v; }
     public int    getTipoCliente() { return tipoCliente; }
     public boolean esMayorDe60()  { return edad > 60; }
     public boolean esPremium()    { return tipoCliente == TIPO_PREMIUM; }

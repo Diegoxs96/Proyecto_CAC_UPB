@@ -8,40 +8,60 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            text="UPB-CAC — Editar Perfil"
-            fx:controller="edu.co.diegoxs96.Client.Controller.EditarPerfilClienteController"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/17">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            text="UPB-CAC- Editar perfil Cliente"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.EditarPerfilClienteController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="600.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
       <children>
-        <Pane layoutX="74.0" layoutY="31.0" prefHeight="312.0" prefWidth="450.0"
+
+        <!-- Panel derecho -->
+        <Pane layoutX="157.0" layoutY="14.0" prefHeight="346.0" prefWidth="426.0"
               style="-fx-background-color: #E6E6E6;">
           <children>
-            <Label layoutX="127.0" layoutY="14.0" prefHeight="39.0" prefWidth="180.0"
+            <Label layoutX="51.0" layoutY="14.0" prefHeight="39.0" prefWidth="180.0"
                    text="Editar Perfil" textAlignment="CENTER">
               <font><Font name="System Bold" size="27.0"/></font>
             </Label>
-
-            <Label layoutX="51.0" layoutY="64.0"  prefHeight="20.0" prefWidth="166.0" text="Correo Electrónico"/>
-            <TextField fx:id="fieldCorreo"     layoutX="51.0" layoutY="84.0"  prefHeight="26.0" prefWidth="349.0" style="-fx-background-color: #bdbdbd;"/>
-
-            <Label layoutX="51.0" layoutY="116.0" prefHeight="20.0" prefWidth="166.0" text="Contraseña"/>
-            <TextField fx:id="fieldContrasena" layoutX="51.0" layoutY="136.0" prefHeight="26.0" prefWidth="349.0" style="-fx-background-color: #bdbdbd;"/>
-
-            <Label layoutX="51.0" layoutY="168.0" prefHeight="20.0" prefWidth="166.0" text="Dirección"/>
-            <TextField fx:id="fieldDireccion"  layoutX="51.0" layoutY="188.0" prefHeight="26.0" prefWidth="349.0" style="-fx-background-color: #bdbdbd;"/>
-
-            <Label fx:id="labelMensaje" layoutX="51.0" layoutY="225.0" prefWidth="349.0" text=""/>
-            <Button layoutX="129.0" layoutY="250.0" prefHeight="40.0" prefWidth="92.0"
-                    text="Guardar" onAction="#handleGuardar"/>
-            <Button layoutX="229.0" layoutY="250.0" prefHeight="40.0" prefWidth="92.0"
-                    text="Cancelar" onAction="#handleCancelar"/>
+            <Label layoutX="51.0" layoutY="64.0" prefHeight="30.0" prefWidth="166.0"
+                   text="Correo Electronico" textAlignment="CENTER">
+              <font><Font size="15.0"/></font>
+            </Label>
+            <TextField fx:id="fieldCorreo" layoutX="51.0" layoutY="94.0"
+                       prefHeight="26.0" prefWidth="349.0" style="-fx-background-color: #bdbdbd;"/>
+            <Label layoutX="51.0" layoutY="123.0" prefHeight="30.0" prefWidth="166.0"
+                   text="Contraseña" textAlignment="CENTER">
+              <font><Font size="15.0"/></font>
+            </Label>
+            <TextField fx:id="fieldContrasena" layoutX="51.0" layoutY="153.0"
+                       prefHeight="26.0" prefWidth="349.0" style="-fx-background-color: #bdbdbd;"/>
+            <Label layoutX="51.0" layoutY="179.0" prefHeight="30.0" prefWidth="166.0"
+                   text="Dirección" textAlignment="CENTER">
+              <font><Font size="15.0"/></font>
+            </Label>
+            <TextField fx:id="fieldDireccion" layoutX="51.0" layoutY="209.0"
+                       prefHeight="26.0" prefWidth="349.0" style="-fx-background-color: #bdbdbd;"/>
+            <Label fx:id="labelMensaje" layoutX="51.0" layoutY="245.0"
+                   prefHeight="18.0" prefWidth="349.0"/>
+            <Button layoutX="180.0" layoutY="267.0" prefHeight="40.0" prefWidth="92.0"
+                    text="Guardar" mnemonicParsing="false" onAction="#handleGuardar"/>
+            <Label layoutX="351.0" layoutY="-1.0" prefHeight="20.0" prefWidth="90.0"
+                   text="Cerrar Sesion" textAlignment="CENTER" textFill="#2735b1"
+                   onMouseClicked="#handleCerrarSesion" style="-fx-cursor: hand;"/>
           </children>
         </Pane>
+
+        <!-- Sidebar -->
+        <Button layoutX="21.0" layoutY="14.0"  prefHeight="40.0" prefWidth="120.0" text="Editar Perfil"    mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="21.0" layoutY="61.0"  prefHeight="40.0" prefWidth="120.0" text="Solicitar Cita"   mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="21.0" layoutY="108.0" prefHeight="40.0" prefWidth="120.0" text="Ver Cita"         mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="21.0" layoutY="154.0" prefHeight="40.0" prefWidth="120.0" text="Modificar Cita"   mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="21.0" layoutY="202.0" prefHeight="40.0" prefWidth="120.0" text="Consultar Turno"  mnemonicParsing="false" onAction="#handleConsultarTurno"/>
+        <Button layoutX="21.0" layoutY="252.0" prefHeight="40.0" prefWidth="120.0" text="Historial cita"   mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="21.0" layoutY="299.0" prefHeight="40.0" prefWidth="120.0" text="Cancelar Cita"    mnemonicParsing="false" onAction="#handleCancelarCita"/>
+
       </children>
     </AnchorPane>
   </content>

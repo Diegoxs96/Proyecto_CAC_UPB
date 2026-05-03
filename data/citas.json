@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "clienteId": 4,
+    "tipo": "Asesoría",
+    "fecha": "04/05/2026",
+    "hora": "10AM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 2,
+    "clienteId": 4,
+    "tipo": "Devolución",
+    "fecha": "05/05/05",
+    "hora": "12PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 3,
+    "clienteId": 4,
+    "tipo": "Devolución",
+    "fecha": "06/06/2026",
+    "hora": "4PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  }
+]

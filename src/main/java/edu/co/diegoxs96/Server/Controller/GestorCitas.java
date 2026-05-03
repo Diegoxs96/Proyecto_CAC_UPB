@@ -1,33 +1,51 @@
 package edu.co.diegoxs96.Server.Controller;
 
+import edu.co.diegoxs96.Json.CitaJson;
 import edu.co.diegoxs96.Server.Model.Cita;
 import edu.co.diegoxs96.Server.Model.Cliente;
 import edu.co.diegoxs96.Server.Model.History.History;
 import edu.co.diegoxs96.structures.linkedlist.singly.LinkedList;
 import edu.co.diegoxs96.structures.model.iterator.Iterator;
 
+import java.util.List;
+
 public class GestorCitas {
 
-    private final LinkedList<Cita> citas    = new LinkedList<>();
+    private final LinkedList<Cita> citas     = new LinkedList<>();
     private final LinkedList<Cita> historico = new LinkedList<>();
+    private final CitaJson         repo      = new CitaJson();
     private int contadorId = 1;
 
+    /**
+     * Carga las citas guardadas al iniciar el servidor.
+     * Necesita la lista de clientes para reconstruir la relación.
+     */
+    public void cargarDesdejSON(LinkedList<Cliente> clientes) {
+        List<Cita> cargadas = repo.cargar(clientes);
+        for (Cita c : cargadas) {
+            citas.add(c);
+            if (c.getId() >= contadorId) contadorId = c.getId() + 1;
+        }
+    }
+
     public Cita solicitarCita(Cliente cliente, String fechaHora, String lugar,
-                               int tipoCita, String descripcion) {
+                              int tipoCita, String descripcion) {
         Cita c = new Cita(contadorId++, cliente, fechaHora, lugar, tipoCita, descripcion);
         citas.add(c);
+        guardarEnJSON();
         History.getInstance().record("CITA", "Cita " + c.getId() + " registrada para " + cliente.getNombreCompleto());
         return c;
     }
 
     public boolean modificarCita(int id, String fechaHora, String lugar,
-                                  int tipoCita, String descripcion) {
+                                 int tipoCita, String descripcion) {
         Cita c = buscarCita(id);
         if (c == null || !c.puedeModificarse()) return false;
         c.setFechaHora(fechaHora);
         c.setLugar(lugar);
         c.setTipoCita(tipoCita);
         c.setDescripcionMotivo(descripcion);
+        guardarEnJSON();
         History.getInstance().record("CITA", "Cita " + id + " modificada.");
         return true;
     }
@@ -37,6 +55,7 @@ public class GestorCitas {
         if (c == null || !c.estaVigente()) return false;
         c.cancelar();
         citas.remove(c);
+        guardarEnJSON();
         History.getInstance().record("CITA", "Cita " + id + " cancelada.");
         return true;
     }
@@ -54,8 +73,8 @@ public class GestorCitas {
         return result;
     }
 
-    public void completar(Cita c)  { c.confirmar();        citas.remove(c); historico.add(c); History.getInstance().record("CITA", "Cita " + c.getId() + " completada."); }
-    public void noAsistida(Cita c) { c.marcarNoAsistida(); citas.remove(c); historico.add(c); History.getInstance().record("CITA", "Cita " + c.getId() + " no asistida."); }
+    public void completar(Cita c)   { c.confirmar();        citas.remove(c); historico.add(c); guardarEnJSON(); History.getInstance().record("CITA", "Cita " + c.getId() + " completada."); }
+    public void noAsistida(Cita c)  { c.marcarNoAsistida(); citas.remove(c); historico.add(c); guardarEnJSON(); History.getInstance().record("CITA", "Cita " + c.getId() + " no asistida."); }
 
     public LinkedList<Cita> listarNoAsistidas() {
         LinkedList<Cita> r = new LinkedList<>();
@@ -64,6 +83,7 @@ public class GestorCitas {
         return r;
     }
 
+    public void guardarEnJSON()          { repo.guardar(citas); }
     public LinkedList<Cita> getHistorico() { return historico; }
     public LinkedList<Cita> getCitas()     { return citas; }
 }

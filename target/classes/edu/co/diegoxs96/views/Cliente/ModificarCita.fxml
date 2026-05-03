@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            text="UPB-CAC- Modificar cita cliente"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.ModificarCitaController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
+                style="-fx-background-color: #bdbdbd;">
+      <children>
+
+        <!-- Fondo panel derecho -->
+        <TextField layoutX="145.0" layoutY="10.0" prefHeight="356.0" prefWidth="444.0"
+                   editable="false" focusTraversable="false"/>
+
+        <!-- Formulario -->
+        <Label layoutX="168.0" layoutY="56.0"  text="Tipo de cita"/>
+        <MenuButton fx:id="menuTipoCita" layoutX="158.0" layoutY="76.0"
+                    mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Seleccione">
+          <items>
+            <MenuItem text="Asesoría"   onAction="#handleTipoAsesoria"/>
+            <MenuItem text="Reclamo"    onAction="#handleTipoReclamo"/>
+            <MenuItem text="Devolución" onAction="#handleTipoDevolucion"/>
+          </items>
+        </MenuButton>
+
+        <Label layoutX="168.0" layoutY="116.0" text="Fecha DD/MM/AAAA"/>
+        <TextField fx:id="fieldFecha" layoutX="158.0" layoutY="135.0"
+                   prefHeight="26.0" prefWidth="198.0"/>
+
+        <Label layoutX="161.0" layoutY="187.0" text="HH:MM (dentro del horario CAC)"/>
+        <MenuButton fx:id="menuHora" layoutX="158.0" layoutY="209.0"
+                    mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Seleccione">
+          <items>
+            <MenuItem text="7AM"  onAction="#handleHora"/>
+            <MenuItem text="8AM"  onAction="#handleHora"/>
+            <MenuItem text="9AM"  onAction="#handleHora"/>
+            <MenuItem text="10AM" onAction="#handleHora"/>
+            <MenuItem text="11AM" onAction="#handleHora"/>
+            <MenuItem text="12PM" onAction="#handleHora"/>
+            <MenuItem text="1PM"  onAction="#handleHora"/>
+            <MenuItem text="2PM"  onAction="#handleHora"/>
+            <MenuItem text="3PM"  onAction="#handleHora"/>
+            <MenuItem text="4PM"  onAction="#handleHora"/>
+            <MenuItem text="5PM"  onAction="#handleHora"/>
+            <MenuItem text="6PM"  onAction="#handleHora"/>
+          </items>
+        </MenuButton>
+
+        <Label layoutX="385.0" layoutY="56.0"  text="Motivo de la cita"/>
+        <TextField fx:id="fieldMotivo" layoutX="374.0" layoutY="76.0"
+                   prefHeight="166.0" prefWidth="198.0"/>
+
+        <Label fx:id="labelMensaje" layoutX="168.0" layoutY="252.0"
+               prefHeight="18.0" prefWidth="229.0"/>
+
+        <Button layoutX="167.0" layoutY="275.0" prefHeight="36.0" prefWidth="92.0"
+                text="Guardar" mnemonicParsing="false" onAction="#handleGuardar"/>
+        <Button layoutX="269.0" layoutY="275.0" prefHeight="36.0" prefWidth="92.0"
+                text="Cancelar Cita" mnemonicParsing="false" onAction="#handleCancelarCita"/>
+
+        <!-- Sidebar -->
+        <Button layoutX="14.0" layoutY="29.0"  prefHeight="36.0" prefWidth="126.0" text="Editar Perfil"    mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="14.0" layoutY="80.0"  prefHeight="36.0" prefWidth="126.0" text="Solicitar Cita"   mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="14.0" layoutY="130.0" prefHeight="36.0" prefWidth="126.0" text="Ver Cita"         mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="14.0" layoutY="178.0" prefHeight="36.0" prefWidth="126.0" text="Modificar Cita"   mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="14.0" layoutY="225.0" prefHeight="36.0" prefWidth="126.0" text="Consultar Turno"  mnemonicParsing="false" onAction="#handleConsultarTurno"/>
+        <Button layoutX="14.0" layoutY="275.0" prefHeight="36.0" prefWidth="126.0" text="Historial Cita"   mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="324.0" prefHeight="36.0" prefWidth="126.0" text="Cancelar Cita"    mnemonicParsing="false" onAction="#handleCancelarCita"/>
+
+      </children>
+    </AnchorPane>
+  </content>
+</TitledPane>

@@ -34,9 +34,9 @@
     "numeroIdentificacion": "1000",
     "nombres": "usuario",
     "apellidos": "random",
-    "contraseña": "1234",
+    "contraseña": "12345",
     "edad": 65,
-    "direccion": "UPB",
+    "direccion": "Casa de Peña",
     "tipoCliente": 1
   },
   {

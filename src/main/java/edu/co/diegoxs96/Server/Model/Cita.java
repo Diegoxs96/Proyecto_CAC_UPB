@@ -37,6 +37,18 @@ public class Cita implements Serializable, Comparable<Cita> {
         this.estado           = ESTADO_PENDIENTE;
     }
 
+    // Constructor para reconstruir desde JSON (incluye estado guardado)
+    public Cita(int id, Cliente cliente, String fechaHora, String lugar,
+                int tipoCita, int estado) {
+        this.id               = id;
+        this.cliente          = cliente;
+        this.fechaHora        = fechaHora;
+        this.lugar            = lugar;
+        this.tipoCita         = tipoCita;
+        this.descripcionMotivo = "";
+        this.estado           = estado;
+    }
+
     public int     getId()                 { return id; }
     public Cliente getCliente()            { return cliente; }
     public String  getFechaHora()          { return fechaHora; }

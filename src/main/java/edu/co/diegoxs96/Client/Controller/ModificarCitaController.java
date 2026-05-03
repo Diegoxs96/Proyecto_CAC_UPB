@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.rmi.Naming;
 
-public class SolicitarCitaController {
+public class ModificarCitaController {
 
     @FXML private MenuButton menuTipoCita;
     @FXML private MenuButton menuHora;
@@ -38,7 +38,7 @@ public class SolicitarCitaController {
             String uri = "//" + env.getIp() + ":" + env.getPort() + "/" + env.getServiceName();
             service = (TicketInterface) Naming.lookup(uri);
         } catch (Exception e) {
-            System.out.println("[SOLICITAR CITA] Sin conexión al servidor.");
+            System.out.println("[MODIFICAR CITA] Sin conexión al servidor.");
         }
     }
 
@@ -63,41 +63,22 @@ public class SolicitarCitaController {
         String fecha  = fieldFecha.getText().trim();
         String motivo = fieldMotivo.getText().trim();
 
-        if (tipoCita == -1) {
-            mostrarError("Selecciona un tipo de cita.");
-            return;
-        }
-        if (fecha.isEmpty()) {
-            mostrarError("Ingresa la fecha.");
-            return;
-        }
-        if (horaSeleccionada == null) {
-            mostrarError("Selecciona una hora.");
-            return;
-        }
-        if (motivo.isEmpty()) {
-            mostrarError("Ingresa el motivo.");
-            return;
-        }
-        if (service == null) {
-            mostrarError("Sin conexión al servidor.");
-            return;
-        }
+        if (tipoCita == -1) { mostrarError("Selecciona un tipo de cita."); return; }
+        if (fecha.isEmpty()) { mostrarError("Ingresa la fecha."); return; }
+        if (horaSeleccionada == null) { mostrarError("Selecciona una hora."); return; }
+        if (service == null) { mostrarError("Sin conexión al servidor."); return; }
 
         int clienteId = Sesion.getInstance().getClienteId();
-        if (clienteId == -1) {
-            mostrarError("Sesión no iniciada.");
-            return;
-        }
+        if (clienteId == -1) { mostrarError("Sesión no iniciada."); return; }
 
         try {
             String fechaHora = fecha + "T" + horaSeleccionada;
-            int citaId = service.solicitarCita(clienteId, fechaHora, tipoCita, motivo);
-            if (citaId != -1) {
+            boolean ok = service.modificarCita(clienteId, fechaHora, tipoCita, motivo);
+            if (ok) {
                 labelMensaje.setStyle("-fx-text-fill: green;");
-                labelMensaje.setText("Cita #" + citaId + " solicitada correctamente.");
+                labelMensaje.setText("Cita modificada correctamente.");
             } else {
-                mostrarError("No se pudo registrar la cita.");
+                mostrarError("No se encontró una cita vigente para modificar.");
             }
         } catch (Exception e) {
             mostrarError("Error: " + e.getMessage());
@@ -112,20 +93,18 @@ public class SolicitarCitaController {
     // ── Navegación ───────────────────────────────────────────────────────────
 
     @FXML private void handleEditarPerfil()   { navegar("/edu/co/diegoxs96/views/Cliente/EditarPerfilCliente.fxml"); }
-    @FXML private void handleSolicitarCita()  { System.out.println("[SOLICITAR CITA] Ya estás aquí"); }
+    @FXML private void handleSolicitarCita()  { navegar("/edu/co/diegoxs96/views/Cliente/SolicitarCita.fxml"); }
     @FXML private void handleVerCita()        { navegar("/edu/co/diegoxs96/views/Cliente/VerCita.fxml"); }
-    @FXML private void handleModificarCita()  { navegar("/edu/co/diegoxs96/views/Cliente/ModificarCita.fxml"); }
+    @FXML private void handleModificarCita()  { System.out.println("[MODIFICAR CITA] Ya estás aquí"); }
     @FXML private void handleConsultarTurno() { navegar("/edu/co/diegoxs96/views/Cliente/ConsultarTurno.fxml"); }
     @FXML private void handleHistorial()      { navegar("/edu/co/diegoxs96/views/Cliente/HistorialCliente.fxml"); }
-    @FXML private void handleCancelarCita()   { System.out.println("[SOLICITAR CITA] Cancelar cita — pendiente"); }
+    @FXML private void handleCancelarCita()   { System.out.println("[MODIFICAR CITA] Cancelar cita — pendiente"); }
 
     private void navegar(String ruta) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(ruta));
             Stage stage  = (Stage) menuTipoCita.getScene().getWindow();
             stage.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 }

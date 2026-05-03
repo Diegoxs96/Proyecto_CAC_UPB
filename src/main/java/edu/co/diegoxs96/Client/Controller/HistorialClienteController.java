@@ -99,7 +99,7 @@ public class HistorialClienteController {
     @FXML private void handleEditarPerfil()      { navegar("/edu/co/diegoxs96/views/Cliente/EditarPerfilCliente.fxml"); }
     @FXML private void handleSolicitarCita()     { System.out.println("[HISTORIAL] Solicitar cita — pendiente"); }
     @FXML private void handleVerCita()           { System.out.println("[HISTORIAL] Ver cita — pendiente"); }
-    @FXML private void handleModificarCita()     { System.out.println("[HISTORIAL] Modificar cita — pendiente"); }
+    @FXML private void handleModificarCita()     { navegar("/edu/co/diegoxs96/views/Cliente/ModificarCita.fxml"); }
     @FXML private void handleObtenerTicket()     { navegar("/edu/co/diegoxs96/views/Cliente/CrearTicket.fxml"); }
     @FXML private void handleNotificacion()      { System.out.println("[HISTORIAL] Notificación — pendiente"); }
     @FXML private void handleConsultarTurno()    { navegar("/edu/co/diegoxs96/views/Cliente/ConsultarTurno.fxml"); }

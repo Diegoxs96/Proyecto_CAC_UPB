@@ -26,12 +26,12 @@ public class MenuController {
 
     @FXML private void handleEditarPerfil()      { navegar("/edu/co/diegoxs96/views/Cliente/EditarPerfilCliente.fxml"); }
     @FXML private void handleSolicitarCita()     { navegar("/edu/co/diegoxs96/views/Cliente/SolicitarCita.fxml"); }
-    @FXML private void handleVerCita()           { System.out.println("[MENU] Ver cita — pendiente"); }
-    @FXML private void handleModificarCita()     { System.out.println("[MENU] Modificar cita — pendiente"); }
+    @FXML private void handleVerCita()           { navegar("/edu/co/diegoxs96/views/Cliente/VerCita.fxml"); }
+    @FXML private void handleModificarCita()     { navegar("/edu/co/diegoxs96/views/Cliente/ModificarCita.fxml"); }
     @FXML private void handleObtenerTicket()     { navegar("/edu/co/diegoxs96/views/Cliente/CrearTicket.fxml"); }
     @FXML private void handleNotificacion()      { System.out.println("[MENU] Notificación — pendiente"); }
     @FXML private void handleConsultarTurno()    { navegar("/edu/co/diegoxs96/views/Cliente/ConsultarTurno.fxml"); }
-    @FXML private void handleHistorial()         { navegar("/edu/co/diegoxs96/views/Cliente/HistorialCliente.fxml"); }
+    @FXML private void handleHistorial()         { navegar("/edu/co/diegoxs96/views/Cliente/HistorialCita.fxml"); }
     @FXML private void handleCancelarCita()      { System.out.println("[MENU] Cancelar cita — pendiente"); }
     @FXML private void handleSolicitarConsulta() { System.out.println("[MENU] Solicitar consulta — pendiente"); }
 

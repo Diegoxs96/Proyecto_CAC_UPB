@@ -1,5 +1,6 @@
 package edu.co.diegoxs96.Server.Model.Service;
 
+import edu.co.diegoxs96.Json.CitaDTO;
 import edu.co.diegoxs96.Json.ClienteDTO;
 import edu.co.diegoxs96.Json.TicketDTO;
 import edu.co.diegoxs96.Server.Controller.GestorBancos;
@@ -32,18 +33,51 @@ public class TicketService extends UnicastRemoteObject implements TicketInterfac
     }
 
     @Override
+    public ArrayList<CitaDTO> listarCitasPorCliente(int clienteId) throws RemoteException {
+        ArrayList<CitaDTO> result = new ArrayList<>();
+        Iterator<Cita> it = gestorCitas.listarPorCliente(clienteId).iterator();
+        while (it.hasNext()) result.add(new CitaDTO(it.next()));
+        return result;
+    }
+
+    @Override
     public ClienteDTO buscarCliente(String numeroIdentificacion) throws RemoteException {
         Cliente c = gestorClientes.buscarPorIdentificacion(numeroIdentificacion);
         return c != null ? new ClienteDTO(c) : null;
     }
 
     @Override
-    public boolean solicitarCita(int clienteId, String fechaHora, int tipoCita, String motivo)
+    public boolean actualizarPerfil(int clienteId, String correo, String contrasena, String direccion)
             throws RemoteException {
         Cliente cliente = gestorClientes.getClientePorId(clienteId);
         if (cliente == null) return false;
-        gestorCitas.solicitarCita(cliente, fechaHora, "Ventanilla", tipoCita, motivo);
+        if (contrasena != null && !contrasena.isEmpty()) cliente.setContraseña(contrasena);
+        if (direccion  != null && !direccion.isEmpty())  cliente.setDireccion(direccion);
+        gestorClientes.guardarEnJSON();
         return true;
+    }
+
+    @Override
+    public boolean modificarCita(int clienteId, String fechaHora, int tipoCita, String motivo)
+            throws RemoteException {
+        // Busca la primera cita vigente del cliente y la modifica
+        Iterator<Cita> it = gestorCitas.listarPorCliente(clienteId).iterator();
+        while (it.hasNext()) {
+            Cita c = it.next();
+            if (c.puedeModificarse()) {
+                return gestorCitas.modificarCita(c.getId(), fechaHora, "Ventanilla", tipoCita, motivo);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int solicitarCita(int clienteId, String fechaHora, int tipoCita, String motivo)
+            throws RemoteException {
+        Cliente cliente = gestorClientes.getClientePorId(clienteId);
+        if (cliente == null) return -1;
+        Cita cita = gestorCitas.solicitarCita(cliente, fechaHora, "Ventanilla", tipoCita, motivo);
+        return cita.getId();
     }
 
     @Override

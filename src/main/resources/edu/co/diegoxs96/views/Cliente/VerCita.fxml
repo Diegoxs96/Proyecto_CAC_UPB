@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="UPB-CAC- Ver cita"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.VerCitaController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
+                style="-fx-background-color: #bdbdbd;">
+      <children>
+
+        <!-- Tabla de citas -->
+        <TableView fx:id="tablaCitas" layoutX="134.0" layoutY="23.0"
+                   prefHeight="260.0" prefWidth="449.0">
+          <columns>
+            <TableColumn fx:id="colNumCita" prefWidth="63.0"  text="Num Cita"/>
+            <TableColumn fx:id="colTipo"    prefWidth="94.0"  text="Tipo"/>
+            <TableColumn fx:id="colFecha"   prefWidth="84.0"  text="Fecha"/>
+            <TableColumn fx:id="colHora"    prefWidth="62.0"  text="Hora"/>
+            <TableColumn fx:id="colBanco"   prefWidth="68.0"  text="Banco"/>
+            <TableColumn fx:id="colEstado"  prefWidth="85.0"  text="Estado"/>
+          </columns>
+        </TableView>
+
+        <!-- Botones acción -->
+        <Button layoutX="213.0" layoutY="296.0" prefHeight="35.0" prefWidth="88.0"
+                text="Solicitar Cita" mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="384.0" layoutY="294.0" prefHeight="39.0" prefWidth="98.0"
+                text="Cancelar Cita" mnemonicParsing="false" onAction="#handleCancelarCita"/>
+
+        <!-- Sidebar -->
+        <Button layoutX="6.0" layoutY="14.0"  prefHeight="39.0" prefWidth="124.0" text="Editar Perfil"     mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="6.0" layoutY="62.0"  prefHeight="39.0" prefWidth="124.0" text="Solicitar Cita"    mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="6.0" layoutY="113.0" prefHeight="39.0" prefWidth="124.0" text="Ver Cita"          mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="6.0" layoutY="160.0" prefHeight="39.0" prefWidth="124.0" text="Modificar Cita"    mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="6.0" layoutY="208.0" prefHeight="39.0" prefWidth="124.0" text="Consultar Turno"   mnemonicParsing="false" onAction="#handleConsultarTurno"/>
+        <Button layoutX="6.0" layoutY="255.0" prefHeight="39.0" prefWidth="124.0" text="Historial de Citas" mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="6.0" layoutY="303.0" prefHeight="39.0" prefWidth="124.0" text="Cancelar Cita"     mnemonicParsing="false" onAction="#handleCancelarCita"/>
+
+      </children>
+    </AnchorPane>
+  </content>
+</TitledPane>

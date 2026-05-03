@@ -40,4 +40,6 @@ public abstract class Usuario implements IUsuario, Serializable {
 
     @Override
     public String getNombreCompleto() { return nombres + " " + apellidos; }
+
+    public void setContraseña(String v) { this.contraseña = v; }
 }
