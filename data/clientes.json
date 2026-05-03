@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "numeroIdentificacion": "1098672643",
+    "nombres": "Diego Alejandro",
+    "apellidos": "Ayala Gamboa",
+    "contraseña": "12345",
+    "edad": 18,
+    "direccion": "UPB",
+    "tipoCliente": 1
+  },
+  {
+    "id": 2,
+    "numeroIdentificacion": "112350123",
+    "nombres": "Nigga",
+    "apellidos": "Floyd",
+    "contraseña": "123456",
+    "edad": 25,
+    "direccion": "UPB",
+    "tipoCliente": 0
+  },
+  {
+    "id": 3,
+    "numeroIdentificacion": "123456789",
+    "nombres": "Diego",
+    "apellidos": "Lopez",
+    "contraseña": "pass123",
+    "edad": 25,
+    "direccion": "Calle 1",
+    "tipoCliente": 0
+  },
+  {
+    "id": 4,
+    "numeroIdentificacion": "1000",
+    "nombres": "usuario",
+    "apellidos": "random",
+    "contraseña": "1234",
+    "edad": 65,
+    "direccion": "UPB",
+    "tipoCliente": 1
+  }
+]

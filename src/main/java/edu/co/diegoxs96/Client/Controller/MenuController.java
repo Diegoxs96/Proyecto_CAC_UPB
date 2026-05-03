@@ -1,8 +1,12 @@
 package edu.co.diegoxs96.Client.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class MenuController {
 
@@ -10,25 +14,34 @@ public class MenuController {
 
     @FXML
     private void initialize() {
-        // Si la imagen no se cargó desde el FXML, poner placeholder
         if (imgMenu != null && imgMenu.getImage() == null) {
-            imagenNoDisponible();
+            try {
+                var url = getClass().getResource("/edu/co/diegoxs96/images/menu_imagen.jpg");
+                if (url != null) imgMenu.setImage(new Image(url.toString()));
+            } catch (Exception e) {
+                System.out.println("[MENU] Imagen no cargada.");
+            }
         }
     }
 
-    /** Llamado desde FXML si la imagen no se encuentra. */
-    public static void imagenNoDisponible() {
-        System.out.println("[MENU] Imagen no disponible — coloca menu_imagen.jpg en resources/edu/co/diegoxs96/images/");
-    }
+    @FXML private void handleEditarPerfil()      { navegar("/edu/co/diegoxs96/views/Cliente/EditarPerfilCliente.fxml"); }
+    @FXML private void handleSolicitarCita()     { System.out.println("[MENU] Solicitar cita — pendiente"); }
+    @FXML private void handleVerCita()           { System.out.println("[MENU] Ver cita — pendiente"); }
+    @FXML private void handleModificarCita()     { System.out.println("[MENU] Modificar cita — pendiente"); }
+    @FXML private void handleObtenerTicket()     { navegar("/edu/co/diegoxs96/views/Cliente/CrearTicket.fxml"); }
+    @FXML private void handleNotificacion()      { System.out.println("[MENU] Notificación — pendiente"); }
+    @FXML private void handleConsultarTurno()    { navegar("/edu/co/diegoxs96/views/Cliente/ConsultarTurno.fxml"); }
+    @FXML private void handleHistorial()         { navegar("/edu/co/diegoxs96/views/Cliente/HistorialCita.fxml"); }
+    @FXML private void handleCancelarCita()      { System.out.println("[MENU] Cancelar cita — pendiente"); }
+    @FXML private void handleSolicitarConsulta() { System.out.println("[MENU] Solicitar consulta — pendiente"); }
 
-    @FXML private void handleEditarPerfil()      { System.out.println("[MENU] Editar perfil"); }
-    @FXML private void handleSolicitarCita()     { System.out.println("[MENU] Solicitar cita"); }
-    @FXML private void handleVerCita()           { System.out.println("[MENU] Ver cita"); }
-    @FXML private void handleModificarCita()     { System.out.println("[MENU] Modificar cita"); }
-    @FXML private void handleObtenerTicket()     { System.out.println("[MENU] Obtener ticket"); }
-    @FXML private void handleNotificacion()      { System.out.println("[MENU] Notificación de turno"); }
-    @FXML private void handleConsultarTurno()    { System.out.println("[MENU] Consultar turno"); }
-    @FXML private void handleHistorial()         { System.out.println("[MENU] Historial de citas"); }
-    @FXML private void handleCancelarCita()      { System.out.println("[MENU] Cancelar cita"); }
-    @FXML private void handleSolicitarConsulta() { System.out.println("[MENU] Solicitar consulta"); }
+    private void navegar(String ruta) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(ruta));
+            Stage stage = (Stage) imgMenu.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

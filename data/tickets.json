@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "numeroTurno": 1,
+    "citaId": 1,
+    "clienteId": 3,
+    "prioridad": 0,
+    "estado": 0,
+    "horaEmision": "16:10:47.198358600",
+    "bancoId": 1,
+    "bancoNombre": "Banco Reclamos"
+  }
+]

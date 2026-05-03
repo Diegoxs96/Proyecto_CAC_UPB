@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0"
+            text="UPB-CAC — Menu Admin"
+            fx:controller="edu.co.diegoxs96.Client.Controller.MenuAdminController"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/17">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="600.0"
+                style="-fx-background-color: #bdbdbd;">
+      <children>
+        <Button layoutX="14.0" layoutY="30.0"  prefHeight="30.0" prefWidth="150.0" text="Editar perfil"           onAction="#handleEditarPerfil"/>
+        <Button layoutX="14.0" layoutY="76.0"  prefHeight="30.0" prefWidth="150.0" text="Buscar Cliente"          onAction="#handleBuscarCliente"/>
+        <Button layoutX="14.0" layoutY="123.0" prefHeight="30.0" prefWidth="150.0" text="Ver cita"                onAction="#handleVerCita"/>
+        <Button layoutX="14.0" layoutY="171.0" prefHeight="30.0" prefWidth="150.0" text="Modificar cita"          onAction="#handleModificarCita"/>
+        <Button layoutX="14.0" layoutY="221.0" prefHeight="30.0" prefWidth="150.0" text="Consultar turno en cola" onAction="#handleConsultarTurno"/>
+        <Button layoutX="14.0" layoutY="264.0" prefHeight="30.0" prefWidth="150.0" text="Historial de Citas"      onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="311.0" prefHeight="30.0" prefWidth="150.0" text="Solicitar consulta"      onAction="#handleSolicitarConsulta"/>
+
+        <!-- Panel tiempos del sistema -->
+        <Pane layoutX="177.0" layoutY="12.0" prefHeight="336.0" prefWidth="198.0"
+              style="-fx-background-color: #E6E6E6;">
+          <children>
+            <Pane layoutX="-1.0" prefHeight="21.0" prefWidth="214.0"
+                  style="-fx-background-color: #bdbdbd;">
+              <children>
+                <Label layoutX="7.0" layoutY="2.0" text="Tiempos del Sistema">
+                  <font><Font name="System Bold" size="12.0"/></font>
+                </Label>
+              </children>
+            </Pane>
+            <Button layoutX="5.0"   layoutY="32.0" prefHeight="34.0" prefWidth="91.0" text="Iniciar sistema"  onAction="#handleIniciarSistema"/>
+            <Button layoutX="102.0" layoutY="32.0" prefHeight="34.0" prefWidth="91.0" text="Cerrar sistema"   onAction="#handleCerrarSistema"/>
+            <Label layoutX="25.0" layoutY="72.0" prefHeight="17.0" prefWidth="149.0" text="Seleccionar días de atención"/>
+            <MenuButton fx:id="menuDias" layoutX="4.0" layoutY="89.0"
+                        prefHeight="25.0" prefWidth="190.0" text="Seleccionar">
+              <items>
+                <MenuItem text="Lunes-Viernes"  onAction="#handleDiasLV"/>
+                <MenuItem text="Lunes-Sábado"   onAction="#handleDiasLS"/>
+                <MenuItem text="Todos los días" onAction="#handleDiasTodos"/>
+              </items>
+            </MenuButton>
+            <Label layoutX="4.0"  layoutY="125.0" prefHeight="17.0" prefWidth="192.0" text="Tiempo máx. de atención por banco"/>
+            <TextField fx:id="fieldTiempoAtencion"    layoutX="4.0" layoutY="145.0" prefHeight="25.0" prefWidth="191.0" promptText="minutos"/>
+            <Label layoutX="8.0"  layoutY="181.0" prefHeight="17.0" prefWidth="192.0" text="Tiempo de vencimiento de ticket"/>
+            <TextField fx:id="fieldTiempoVencimiento" layoutX="4.0" layoutY="200.0" prefHeight="25.0" prefWidth="191.0" promptText="minutos"/>
+            <Label layoutX="22.0" layoutY="242.0" prefHeight="17.0" prefWidth="148.0" text="Cerrar sesión inactiva desde"/>
+            <TextField fx:id="fieldSesionInactiva"    layoutX="4.0" layoutY="259.0" prefHeight="25.0" prefWidth="191.0" promptText="minutos"/>
+          </children>
+        </Pane>
+
+        <!-- Panel capacidad de colas -->
+        <Pane layoutX="386.0" layoutY="12.0" prefHeight="336.0" prefWidth="198.0"
+              style="-fx-background-color: #E6E6E6;">
+          <children>
+            <Pane layoutX="-2.0" prefHeight="21.0" prefWidth="206.0"
+                  style="-fx-background-color: #bdbdbd;">
+              <children>
+                <Label layoutX="7.0" layoutY="2.0" text="Capacidad de colas">
+                  <font><Font name="System Bold" size="12.0"/></font>
+                </Label>
+              </children>
+            </Pane>
+            <Label layoutX="4.0"  layoutY="57.0"  prefHeight="17.0" prefWidth="192.0" text="Capacidad máx. de colas por banco"/>
+            <TextField fx:id="fieldCapacidadCola" layoutX="3.0" layoutY="77.0" prefHeight="25.0" prefWidth="191.0" promptText="número"/>
+            <Label layoutX="23.0" layoutY="126.0" prefHeight="17.0" prefWidth="156.0" text="Máximo de sesiones abiertas"/>
+            <TextField fx:id="fieldMaxSesiones"   layoutX="3.0" layoutY="143.0" prefHeight="25.0" prefWidth="191.0" promptText="número"/>
+            <Button layoutX="56.0" layoutY="214.0" prefHeight="34.0" prefWidth="91.0"
+                    text="Guardar" onAction="#handleGuardar"/>
+          </children>
+        </Pane>
+      </children>
+    </AnchorPane>
+  </content>
+</TitledPane>
