@@ -11,45 +11,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="UPB-CAC-MenuCliente" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="UPB-CAC-HistorialCliente"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.HistorialClienteController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #bdbdbd;">
-         <children>
-            <Button layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Editar perfil" />
-            <Button layoutX="14.0" layoutY="43.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Solicitar Cita" />
-            <Button layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Ver cita " />
-            <Button layoutX="14.0" layoutY="117.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Modificar cita " />
-            <Button layoutX="14.0" layoutY="154.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Obtener ticket virtual" />
-            <Button layoutX="14.0" layoutY="191.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Notificacion de turno " />
-            <Button layoutX="14.0" layoutY="228.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" text="Consultar turno" />
-            <Button layoutX="14.0" layoutY="264.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Historial de Citas " />
-            <Button layoutX="14.0" layoutY="301.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Cancelar Cita " />
-            <Button layoutX="14.0" layoutY="337.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Solicitar consulta " />
-            <Pane layoutX="170.0" layoutY="17.0" prefHeight="342.0" prefWidth="414.0" style="-fx-background-color: #E6E6E6;">
-               <children>
-                  <TableView blendMode="DARKEN" layoutX="14.0" layoutY="37.0" prefHeight="293.0" prefWidth="385.0">
-                    <columns>
-                      <TableColumn prefWidth="44.800048828125" text="ID Cita" />
-                      <TableColumn prefWidth="89.60005187988281" text="Cliente" />
-                        <TableColumn prefWidth="112.79998779296875" text="Tipo" />
-                        <TableColumn prefWidth="44.800048828125" text="Fecha" />
-                        <TableColumn prefWidth="44.800048828125" text="Hora" />
-                        <TableColumn prefWidth="44.800048828125" text="Banco" />
-                    </columns>
-                     <effect>
-                        <Glow level="0.0" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </TableView>
-                  <Label layoutX="24.0" layoutY="14.0" prefHeight="17.0" prefWidth="134.0" text="Historial de cita">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
+                style="-fx-background-color: #bdbdbd;">
+      <children>
+        <Button layoutX="14.0" layoutY="25.0"  prefHeight="30.0" prefWidth="138.0" text="Editar perfil"      mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="14.0" layoutY="70.0"  prefHeight="30.0" prefWidth="138.0" text="Solicitar Cita"     mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="13.0" layoutY="118.0" prefHeight="30.0" prefWidth="138.0" text="Ver cita"           mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="13.0" layoutY="165.0" prefHeight="30.0" prefWidth="138.0" text="Modificar cita"     mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="13.0" layoutY="213.0" prefHeight="30.0" prefWidth="137.0" text="Consultar turno"    mnemonicParsing="false" onAction="#handleConsultarTurno"/>
+        <Button layoutX="12.0" layoutY="264.0" prefHeight="30.0" prefWidth="138.0" text="Historial de Citas" mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="13.0" layoutY="314.0" prefHeight="30.0" prefWidth="140.0" text="Cancelar Cita"      mnemonicParsing="false" onAction="#handleCancelarCita"/>
+        <Pane layoutX="170.0" layoutY="17.0" prefHeight="342.0" prefWidth="414.0"
+              style="-fx-background-color: #E6E6E6;">
+          <children>
+            <Label layoutX="24.0" layoutY="14.0" prefHeight="17.0" prefWidth="134.0" text="Historial de cita">
+              <font><Font name="System Bold" size="12.0"/></font>
+            </Label>
+            <TableView fx:id="tablaHistorial" blendMode="DARKEN" layoutX="14.0" layoutY="37.0"
+                       prefHeight="293.0" prefWidth="385.0">
+              <columns>
+                <TableColumn fx:id="colIdCita"  prefWidth="44.0"  text="ID Cita"/>
+                <TableColumn fx:id="colCliente" prefWidth="90.0"  text="Cliente"/>
+                <TableColumn fx:id="colTipo"    prefWidth="113.0" text="Tipo"/>
+                <TableColumn fx:id="colFecha"   prefWidth="44.0"  text="Fecha"/>
+                <TableColumn fx:id="colHora"    prefWidth="44.0"  text="Hora"/>
+                <TableColumn fx:id="colBanco"   prefWidth="44.0"  text="Banco"/>
+              </columns>
+              <effect><Glow level="0.0"/></effect>
+              <cursor><Cursor fx:constant="DEFAULT"/></cursor>
+            </TableView>
+          </children>
+        </Pane>
+      </children>
+    </AnchorPane>
   </content>
 </TitledPane>

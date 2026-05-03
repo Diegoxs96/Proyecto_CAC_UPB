@@ -10,36 +10,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false"
-            maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            text="UPB-CAC — Buscar Cliente"
-            fx:controller="edu.co.diegoxs96.Client.Controller.BuscarClienteController"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/17">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            text="UPB-CAC-Buscar Cliente Admin"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.BuscarClienteController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="600.0"
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
                 style="-fx-background-color: #bdbdbd;">
       <children>
-        <!-- Botones laterales -->
-        <Button layoutX="14.0" layoutY="13.0"  prefHeight="30.0" prefWidth="150.0" text="Editar perfil"           onAction="#handleEditarPerfil"/>
-        <Button layoutX="14.0" layoutY="50.0"  prefHeight="30.0" prefWidth="150.0" text="Solicitar Cita"          onAction="#handleSolicitarCita"/>
-        <Button layoutX="14.0" layoutY="87.0"  prefHeight="30.0" prefWidth="150.0" text="Ver cita"                onAction="#handleVerCita"/>
-        <Button layoutX="14.0" layoutY="125.0" prefHeight="30.0" prefWidth="150.0" text="Modificar cita"          onAction="#handleModificarCita"/>
-        <Button layoutX="14.0" layoutY="162.0" prefHeight="30.0" prefWidth="150.0" text="Obtener ticket virtual"  onAction="#handleObtenerTicket"/>
-        <Button layoutX="14.0" layoutY="199.0" prefHeight="30.0" prefWidth="150.0" text="Consultar turno en cola" onAction="#handleConsultarTurno"/>
-        <Button layoutX="14.0" layoutY="236.0" prefHeight="30.0" prefWidth="150.0" text="Historial de Citas"      onAction="#handleHistorial"/>
-        <Button layoutX="14.0" layoutY="274.0" prefHeight="30.0" prefWidth="150.0" text="Cancelar Cita"           onAction="#handleCancelarCita"/>
-        <Button layoutX="14.0" layoutY="313.0" prefHeight="30.0" prefWidth="150.0" text="Solicitar consulta"      onAction="#handleSolicitarConsulta"/>
 
-        <!-- Panel de búsqueda -->
+        <!-- Sidebar -->
+        <Button layoutX="14.0" layoutY="14.0"  prefHeight="30.0" prefWidth="150.0" text="Editar perfil"    mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="14.0" layoutY="64.0"  prefHeight="30.0" prefWidth="150.0" text="Buscar Cliente"   mnemonicParsing="false" onAction="#handleBuscarCliente"/>
+        <Button layoutX="14.0" layoutY="113.0" prefHeight="30.0" prefWidth="150.0" text="Ver cita"         mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="14.0" layoutY="165.0" prefHeight="30.0" prefWidth="150.0" text="Modificar cita"   mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="14.0" layoutY="222.0" prefHeight="30.0" prefWidth="150.0" text="Historial de Citas" mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="276.0" prefHeight="30.0" prefWidth="150.0" text="Menu"             mnemonicParsing="false" onAction="#handleMenu"/>
+
+        <!-- Panel derecho -->
         <Pane layoutX="188.0" layoutY="12.0" prefHeight="336.0" prefWidth="394.0"
               style="-fx-background-color: #E6E6E6;">
           <children>
             <Label layoutX="56.0" layoutY="28.0" text="Buscar Cliente"/>
 
-            <!-- ID del cliente -->
             <Pane layoutX="56.0" layoutY="77.0" prefHeight="21.0" prefWidth="282.0"
                   style="-fx-background-color: #bdbdbd;">
               <children>
@@ -47,9 +41,8 @@
               </children>
             </Pane>
             <TextField fx:id="fieldBuscarId" layoutX="56.0" layoutY="45.0"
-                       prefHeight="25.0" prefWidth="282.0" promptText="ID del cliente"/>
+                       prefHeight="25.0" prefWidth="282.0"/>
 
-            <!-- Número de cita -->
             <Label layoutX="61.0" layoutY="102.0" text="Num de Cita"/>
             <Pane layoutX="57.0" layoutY="149.0" prefHeight="21.0" prefWidth="281.0"
                   style="-fx-background-color: #bdbdbd;">
@@ -58,36 +51,35 @@
               </children>
             </Pane>
             <TextField fx:id="fieldNumeroCita" layoutX="56.0" layoutY="119.0"
-                       prefHeight="25.0" prefWidth="282.0" promptText="Número de cita"/>
+                       prefHeight="25.0" prefWidth="282.0"/>
 
-            <!-- Prioridad -->
             <Label layoutX="63.0" layoutY="174.0" text="Prioridad de la Cita"/>
             <MenuButton fx:id="menuPrioridad" layoutX="59.0" layoutY="191.0"
-                        prefHeight="25.0" prefWidth="279.0" text="Seleccionar prioridad">
+                        mnemonicParsing="false" prefHeight="25.0" prefWidth="279.0" text="Seleccione">
               <items>
                 <MenuItem text="Estándar" onAction="#handlePrioridadEstandar"/>
                 <MenuItem text="Premium"  onAction="#handlePrioridadPremium"/>
               </items>
             </MenuButton>
 
-            <!-- Aviso -->
             <Pane layoutX="63.0" layoutY="223.0" prefHeight="36.0" prefWidth="271.0"
                   style="-fx-background-color: #bdbdbd;">
               <children>
                 <Label layoutX="7.0" layoutY="7.0" prefHeight="25.0" prefWidth="264.0"
-                       text="Solo aplica a tickets aún no llamados">
+                       text="Solo aplica a Ticket aun no llamados">
                   <font><Font size="16.0"/></font>
                 </Label>
               </children>
             </Pane>
 
-            <!-- Resultado -->
             <Label fx:id="labelResultado" layoutX="56.0" layoutY="268.0"
-                   prefWidth="282.0" text="" textFill="#333333"/>
+                   prefHeight="25.0" prefWidth="282.0"/>
 
-            <Button layoutX="172.0" layoutY="300.0" text="Buscar" onAction="#handleBuscar"/>
+            <Button layoutX="172.0" layoutY="300.0" mnemonicParsing="false"
+                    text="Buscar" onAction="#handleBuscar"/>
           </children>
         </Pane>
+
       </children>
     </AnchorPane>
   </content>

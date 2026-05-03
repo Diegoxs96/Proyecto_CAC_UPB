@@ -2,11 +2,13 @@ package edu.co.diegoxs96.Json;
 
 import edu.co.diegoxs96.Server.Model.Cliente;
 
+import java.io.Serializable;
 
-  // Nos sirve para transformar un objeto Cliente a JSON.
+// Transforma un objeto Cliente a JSON y permite transferirlo por RMI.
+public class ClienteDTO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 
-public class ClienteDTO {
     public int    id;
     public String numeroIdentificacion;
     public String nombres;

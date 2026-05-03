@@ -5,10 +5,10 @@ import edu.co.diegoxs96.Server.Model.*;
 import edu.co.diegoxs96.structures.linkedlist.singly.LinkedList;
 import edu.co.diegoxs96.structures.model.iterator.Iterator;
 
-/**
- * Emite tickets y los asigna al banco correcto.
- * LinkedList<Ticket> ticketsActivos → seguimiento de todos los tickets en curso.
- */
+
+ // Emite tickets y los asigna al banco correcto.
+ // LinkedList<Ticket> ticketsActivos → seguimiento de todos los tickets en curso.
+
 public class GestorTickets {
 
     private final LinkedList<Ticket> ticketsActivos = new LinkedList<>();
@@ -51,6 +51,17 @@ public class GestorTickets {
     }
 
     public LinkedList<Ticket> getTicketsActivos() { return ticketsActivos; }
+
+    public LinkedList<Ticket> listarPorCliente(int clienteId) {
+        LinkedList<Ticket> result = new LinkedList<>();
+        Iterator<Ticket> it = ticketsActivos.iterator();
+        while (it.hasNext()) {
+            Ticket t = it.next();
+            if (t.getCita() != null && t.getCita().getCliente().getId() == clienteId)
+                result.add(t);
+        }
+        return result;
+    }
 
     public void guardarEnJSON() { repo.guardar(ticketsActivos); }
 }

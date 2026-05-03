@@ -36,6 +36,15 @@ public class GestorClientes {
         return arbol.search(new Cliente(id, "", "", "", "", 0, "", 0));
     }
 
+    public Cliente getClientePorId(int id) {
+        Iterator<Cliente> it = clientes.iterator();
+        while (it.hasNext()) {
+            Cliente c = it.next();
+            if (c.getId() == id) return c;
+        }
+        return null;
+    }
+
     public Cliente buscarPorIdentificacion(String num) {
         Iterator<Cliente> it = clientes.iterator();
         while (it.hasNext()) {

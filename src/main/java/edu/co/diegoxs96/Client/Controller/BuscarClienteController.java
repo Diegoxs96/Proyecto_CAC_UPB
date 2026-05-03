@@ -1,11 +1,16 @@
 package edu.co.diegoxs96.Client.Controller;
 
 import edu.co.diegoxs96.Environment.Environment;
+import edu.co.diegoxs96.Json.ClienteDTO;
 import edu.co.diegoxs96.Server.Model.TicketInterface;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.rmi.Naming;
 
@@ -35,41 +40,68 @@ public class BuscarClienteController {
 
     @FXML
     private void handleBuscar() {
-        String id       = fieldBuscarId.getText().trim();
-        String numCita  = fieldNumeroCita.getText().trim();
+        String id      = fieldBuscarId.getText().trim();
+        String numCita = fieldNumeroCita.getText().trim();
 
         if (id.isEmpty()) {
+            labelResultado.setStyle("-fx-text-fill: red;");
             labelResultado.setText("Ingresa el ID del cliente.");
             return;
         }
-
+        if (service == null) {
+            labelResultado.setStyle("-fx-text-fill: red;");
+            labelResultado.setText("Sin conexión al servidor.");
+            return;
+        }
         try {
-            int clienteId = Integer.parseInt(id);
-            int citaId    = numCita.isEmpty() ? -1 : Integer.parseInt(numCita);
-
-            if (service != null && citaId != -1) {
-                int posicion = service.consultarPosicion(citaId);
-                labelResultado.setText(posicion > 0
-                    ? "Cliente " + clienteId + " — Posición en cola: " + posicion
-                    : "No se encontró ticket activo para esa cita.");
-            } else {
-                labelResultado.setText("Buscando cliente ID: " + clienteId);
+            // Buscar cliente por numeroIdentificacion
+            ClienteDTO cliente = service.buscarCliente(id);
+            if (cliente == null) {
+                labelResultado.setStyle("-fx-text-fill: red;");
+                labelResultado.setText("Cliente no encontrado.");
+                return;
             }
+
+            String tipo = cliente.tipoCliente == 1 ? "Premium" : "Estándar";
+            String info = cliente.nombres + " " + cliente.apellidos + " | " + tipo + " | Edad: " + cliente.edad;
+
+            // Si también ingresaron número de cita, mostrar posición en cola
+            if (!numCita.isEmpty()) {
+                int citaId   = Integer.parseInt(numCita);
+                int posicion = service.consultarPosicion(citaId);
+                info += posicion > 0
+                        ? " | Posición en cola: " + posicion
+                        : " | Sin ticket activo para esa cita";
+            }
+
+            labelResultado.setStyle("-fx-text-fill: black;");
+            labelResultado.setText(info);
+
         } catch (NumberFormatException e) {
-            labelResultado.setText("ID y número de cita deben ser numéricos.");
+            labelResultado.setStyle("-fx-text-fill: red;");
+            labelResultado.setText("Número de cita debe ser numérico.");
         } catch (Exception e) {
+            labelResultado.setStyle("-fx-text-fill: red;");
             labelResultado.setText("Error: " + e.getMessage());
         }
     }
 
-    // ── Botones laterales ──
-    @FXML private void handleEditarPerfil()      { System.out.println("[BUSCAR] Editar perfil"); }
-    @FXML private void handleSolicitarCita()     { System.out.println("[BUSCAR] Solicitar cita"); }
-    @FXML private void handleVerCita()           { System.out.println("[BUSCAR] Ver cita"); }
-    @FXML private void handleModificarCita()     { System.out.println("[BUSCAR] Modificar cita"); }
-    @FXML private void handleObtenerTicket()     { System.out.println("[BUSCAR] Obtener ticket"); }
-    @FXML private void handleConsultarTurno()    { System.out.println("[BUSCAR] Consultar turno"); }
-    @FXML private void handleHistorial()         { System.out.println("[BUSCAR] Historial"); }
-    @FXML private void handleCancelarCita()      { System.out.println("[BUSCAR] Cancelar cita"); }
-    @FXML private void handleSolicitarConsulta() { System.out.println("[BUSCAR] Solicitar consulta"); }
+    // ── Navegación ───────────────────────────────────────────────────────────
+
+    @FXML private void handleEditarPerfil()  { navegar("/edu/co/diegoxs96/views/Admin/EditarPerfilAdmin.fxml"); }
+    @FXML private void handleBuscarCliente() { System.out.println("[BUSCAR] Ya estás aquí"); }
+    @FXML private void handleVerCita()       { System.out.println("[BUSCAR] Ver cita — pendiente"); }
+    @FXML private void handleModificarCita() { System.out.println("[BUSCAR] Modificar cita — pendiente"); }
+    @FXML private void handleHistorial()     { navegar("/edu/co/diegoxs96/views/Admin/HistorialAdmin.fxml"); }
+    @FXML private void handleMenu()          { navegar("/edu/co/diegoxs96/views/Admin/MenuAdmin.fxml"); }
+
+    private void navegar(String ruta) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(ruta));
+            Stage stage  = (Stage) fieldBuscarId.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

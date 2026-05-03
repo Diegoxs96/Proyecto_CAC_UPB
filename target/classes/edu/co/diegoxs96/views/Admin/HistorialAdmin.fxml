@@ -10,47 +10,49 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="UPB-CAC-Historial Cita Admin" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-    <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #bdbdbd;">
-            <children>
-            <Button layoutX="14.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Historial de Citas " />
-            <Button layoutX="14.0" layoutY="271.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Cancelar Cita " />
-            <Button layoutX="14.0" layoutY="187.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Consultar turno en cola " />
-            <Button layoutX="14.0" layoutY="149.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Modificar cita " />
-            <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Ver cita " />
-            <Button layoutX="14.0" layoutY="68.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Buscar Cliente" />
-            <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Editar perfil" />
-            <Pane layoutX="177.0" layoutY="12.0" prefHeight="336.0" prefWidth="410.0" style="-fx-background-color: #E6E6E6;">
-               <children>
-                  <Pane layoutX="-1.0" prefHeight="21.0" prefWidth="412.0" style="-fx-background-color: #bdbdbd;">
-                     <children>
-                        <Label layoutX="7.0" layoutY="2.0" text="Historial de cita">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="S_RESIZE" />
-                           </cursor>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <TableView blendMode="DARKEN" cache="true" layoutX="14.0" layoutY="34.0" prefHeight="294.0" prefWidth="387.0">
-                    <columns>
-                      <TableColumn prefWidth="47.20001220703125" text="ID Cita" />
-                        <TableColumn prefWidth="96.00001525878906" text="Cliente" />
-                        <TableColumn prefWidth="96.00001525878906" text="Tipo" />
-                        <TableColumn prefWidth="47.20001220703125" text="Fecha" />
-                        <TableColumn prefWidth="47.20001220703125" text="Hora" />
-                        <TableColumn prefWidth="48.5999755859375" text="Banco" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="UPB-CAC-Historial Cita Admin"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.HistorialAdminController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
+                style="-fx-background-color: #bdbdbd;">
+      <children>
+        <Button layoutX="14.0" layoutY="34.0"  prefHeight="42.0" prefWidth="150.0" text="Editar Perfil"   mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="14.0" layoutY="86.0"  prefHeight="42.0" prefWidth="150.0" text="Buscar Cliente"  mnemonicParsing="false" onAction="#handleBuscarCliente"/>
+        <Button layoutX="14.0" layoutY="137.0" prefHeight="42.0" prefWidth="150.0" text="Ver Cita"        mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="14.0" layoutY="187.0" prefHeight="42.0" prefWidth="150.0" text="Modificar Cita"  mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="14.0" layoutY="239.0" prefHeight="42.0" prefWidth="150.0" text="Historial Citas" mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="289.0" prefHeight="42.0" prefWidth="150.0" text="Menu"            mnemonicParsing="false" onAction="#handleMenu"/>
+        <Pane layoutX="177.0" layoutY="12.0" prefHeight="336.0" prefWidth="410.0"
+              style="-fx-background-color: #E6E6E6;">
+          <children>
+            <Pane layoutX="-1.0" prefHeight="21.0" prefWidth="412.0"
+                  style="-fx-background-color: #bdbdbd;">
+              <children>
+                <Label layoutX="7.0" layoutY="2.0" text="Historial de cita">
+                  <font><Font name="System Bold" size="12.0"/></font>
+                  <cursor><Cursor fx:constant="S_RESIZE"/></cursor>
+                </Label>
+              </children>
             </Pane>
-            <Button layoutX="14.0" layoutY="310.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Menu" />
-            </children></AnchorPane>
-    </content>
+            <TableView fx:id="tablaHistorial" blendMode="DARKEN" cache="true"
+                       layoutX="14.0" layoutY="34.0" prefHeight="294.0" prefWidth="387.0">
+              <columns>
+                <TableColumn fx:id="colIdCita"  prefWidth="47.0"  text="ID Cita"/>
+                <TableColumn fx:id="colCliente" prefWidth="96.0"  text="Cliente"/>
+                <TableColumn fx:id="colTipo"    prefWidth="96.0"  text="Tipo"/>
+                <TableColumn fx:id="colFecha"   prefWidth="47.0"  text="Fecha"/>
+                <TableColumn fx:id="colHora"    prefWidth="47.0"  text="Hora"/>
+                <TableColumn fx:id="colBanco"   prefWidth="48.0"  text="Banco"/>
+              </columns>
+              <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+              </columnResizePolicy>
+            </TableView>
+          </children>
+        </Pane>
+      </children>
+    </AnchorPane>
+  </content>
 </TitledPane>

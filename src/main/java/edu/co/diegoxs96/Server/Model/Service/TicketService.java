@@ -1,13 +1,19 @@
 package edu.co.diegoxs96.Server.Model.Service;
 
+import edu.co.diegoxs96.Json.ClienteDTO;
+import edu.co.diegoxs96.Json.TicketDTO;
 import edu.co.diegoxs96.Server.Controller.GestorBancos;
 import edu.co.diegoxs96.Server.Controller.GestorCitas;
 import edu.co.diegoxs96.Server.Controller.GestorClientes;
 import edu.co.diegoxs96.Server.Controller.GestorTickets;
 import edu.co.diegoxs96.Server.Model.*;
+import edu.co.diegoxs96.structures.model.iterator.Iterator;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class TicketService extends UnicastRemoteObject implements TicketInterface {
 
@@ -23,6 +29,35 @@ public class TicketService extends UnicastRemoteObject implements TicketInterfac
         this.gestorCitas    = gci;
         this.gestorTickets  = gt;
         this.gestorBancos   = gb;
+    }
+
+    @Override
+    public ClienteDTO buscarCliente(String numeroIdentificacion) throws RemoteException {
+        Cliente c = gestorClientes.buscarPorIdentificacion(numeroIdentificacion);
+        return c != null ? new ClienteDTO(c) : null;
+    }
+
+    @Override
+    public boolean solicitarCita(int clienteId, String fechaHora, int tipoCita, String motivo)
+            throws RemoteException {
+        Cliente cliente = gestorClientes.getClientePorId(clienteId);
+        if (cliente == null) return false;
+        gestorCitas.solicitarCita(cliente, fechaHora, "Ventanilla", tipoCita, motivo);
+        return true;
+    }
+
+    @Override
+    public TicketDTO emitirTicketDirecto(int clienteId, int tipoCita) throws RemoteException {
+        Cliente cliente = gestorClientes.getClientePorId(clienteId);
+        if (cliente == null) {
+            System.out.println("[TICKET SERVICE] Cliente no encontrado: " + clienteId);
+            return null;
+        }
+        String fechaHora = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        Cita cita = gestorCitas.solicitarCita(cliente, fechaHora, "Ventanilla", tipoCita, "Ticket directo");
+        Ticket t  = gestorTickets.emitirTicket(cita);
+        return t != null ? new TicketDTO(t) : null;
     }
 
     @Override
@@ -44,5 +79,21 @@ public class TicketService extends UnicastRemoteObject implements TicketInterfac
     public Ticket verFrente(int bancoId) throws RemoteException {
         BancoServicio banco = gestorBancos.buscarPorId(bancoId);
         return (banco != null) ? banco.verFrente() : null;
+    }
+
+    @Override
+    public ArrayList<TicketDTO> listarTicketsPorCliente(int clienteId) throws RemoteException {
+        ArrayList<TicketDTO> result = new ArrayList<>();
+        Iterator<Ticket> it = gestorTickets.listarPorCliente(clienteId).iterator();
+        while (it.hasNext()) result.add(new TicketDTO(it.next()));
+        return result;
+    }
+
+    @Override
+    public ArrayList<TicketDTO> listarTodosTickets() throws RemoteException {
+        ArrayList<TicketDTO> result = new ArrayList<>();
+        Iterator<Ticket> it = gestorTickets.getTicketsActivos().iterator();
+        while (it.hasNext()) result.add(new TicketDTO(it.next()));
+        return result;
     }
 }

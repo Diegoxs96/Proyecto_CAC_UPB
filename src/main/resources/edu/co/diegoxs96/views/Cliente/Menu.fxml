@@ -3,46 +3,33 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
 
-<TitledPane animated="false"
-            maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            text="UPB-CAC-Menu"
-            fx:controller="edu.co.diegoxs96.Client.Controller.MenuController"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/17">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="UPB-CAC-MenuCliente"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.co.diegoxs96.Client.Controller.MenuController">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="600.0"
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
                 style="-fx-background-color: #bdbdbd;">
       <children>
-        <Button layoutX="14.0" layoutY="7.0"   prefHeight="30.0" prefWidth="138.0" text="Editar perfil"           onAction="#handleEditarPerfil"/>
-        <Button layoutX="14.0" layoutY="43.0"  prefHeight="30.0" prefWidth="138.0" text="Solicitar Cita"          onAction="#handleSolicitarCita"/>
-        <Button layoutX="14.0" layoutY="80.0"  prefHeight="30.0" prefWidth="138.0" text="Ver cita"                onAction="#handleVerCita"/>
-        <Button layoutX="14.0" layoutY="117.0" prefHeight="30.0" prefWidth="138.0" text="Modificar cita"          onAction="#handleModificarCita"/>
-        <Button layoutX="14.0" layoutY="154.0" prefHeight="30.0" prefWidth="138.0" text="Obtener ticket virtual"  onAction="#handleObtenerTicket"/>
-        <Button layoutX="14.0" layoutY="191.0" prefHeight="30.0" prefWidth="138.0" text="Notificacion de turno"   onAction="#handleNotificacion"/>
-        <Button layoutX="14.0" layoutY="228.0" prefHeight="30.0" prefWidth="138.0" text="Consultar turno en cola" onAction="#handleConsultarTurno"/>
-        <Button layoutX="14.0" layoutY="264.0" prefHeight="30.0" prefWidth="138.0" text="Historial de Citas"      onAction="#handleHistorial"/>
-        <Button layoutX="14.0" layoutY="301.0" prefHeight="30.0" prefWidth="138.0" text="Cancelar Cita"           onAction="#handleCancelarCita"/>
-        <Button layoutX="14.0" layoutY="337.0" prefHeight="30.0" prefWidth="138.0" text="Solicitar consulta"      onAction="#handleSolicitarConsulta"/>
-
-        <ImageView fx:id="imgMenu" fitHeight="267.0" fitWidth="415.0"
-                   layoutX="171.0" layoutY="16.0"
-                   pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@../../images/menu_imagen.jpg"/>
-          </image>
-        </ImageView>
-
-        <Label layoutX="164.0" layoutY="294.0" prefHeight="36.0" prefWidth="431.0"
-               text="Un cucuteño ">
-          <font><Font size="21.0"/></font>
-        </Label>
+        <Button layoutX="15.0" layoutY="17.0"  prefHeight="30.0" prefWidth="138.0" text="Editar perfil"       mnemonicParsing="false" onAction="#handleEditarPerfil"/>
+        <Button layoutX="15.0" layoutY="63.0"  prefHeight="30.0" prefWidth="138.0" text="Solicitar Cita"      mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="15.0" layoutY="108.0" prefHeight="30.0" prefWidth="138.0" text="Ver cita"            mnemonicParsing="false" onAction="#handleVerCita"/>
+        <Button layoutX="15.0" layoutY="156.0" prefHeight="30.0" prefWidth="138.0" text="Modificar cita"      mnemonicParsing="false" onAction="#handleModificarCita"/>
+        <Button layoutX="14.0" layoutY="202.0" prefHeight="30.0" prefWidth="137.0" text="Consultar turno"     mnemonicParsing="false" onAction="#handleConsultarTurno"/>
+        <Button layoutX="15.0" layoutY="247.0" prefHeight="30.0" prefWidth="138.0" text="Historial de Citas"  mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="292.0" prefHeight="30.0" prefWidth="140.0" text="Cancelar Cita"       mnemonicParsing="false" onAction="#handleCancelarCita"/>
+        <Pane layoutX="170.0" layoutY="17.0" prefHeight="342.0" prefWidth="414.0"
+              style="-fx-background-color: #E6E6E6;">
+          <children>
+            <Label layoutX="34.0" layoutY="204.0" prefHeight="17.0" prefWidth="68.0" text="EL cucuteño"/>
+            <ImageView fx:id="imgMenu" fitHeight="183.0" fitWidth="158.0" layoutX="23.0" layoutY="21.0"
+                       pickOnBounds="true" preserveRatio="true"/>
+          </children>
+        </Pane>
       </children>
     </AnchorPane>
   </content>

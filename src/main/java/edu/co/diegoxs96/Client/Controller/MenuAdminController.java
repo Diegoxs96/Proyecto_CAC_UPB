@@ -23,7 +23,7 @@ public class MenuAdminController {
     @FXML private void handleVerCita()           { System.out.println("[ADMIN] Ver cita — pendiente"); }
     @FXML private void handleModificarCita()     { System.out.println("[ADMIN] Modificar cita — pendiente"); }
     @FXML private void handleConsultarTurno()    { System.out.println("[ADMIN] Consultar turno — pendiente"); }
-    @FXML private void handleHistorial()         { System.out.println("[ADMIN] Historial — pendiente"); }
+    @FXML private void handleHistorial() { navegar("/edu/co/diegoxs96/views/Admin/HistorialAdmin.fxml"); }
     @FXML private void handleSolicitarConsulta() { System.out.println("[ADMIN] Solicitar consulta — pendiente"); }
 
     // ── Sistema ──
