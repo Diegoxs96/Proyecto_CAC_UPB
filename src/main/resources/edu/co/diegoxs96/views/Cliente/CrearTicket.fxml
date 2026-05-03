@@ -11,27 +11,37 @@
 
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            text="UPB-CAC — Crear Ticket"
+            prefHeight="400.0" prefWidth="600.0" text="UPB-CAC — Crear Ticket"
             fx:controller="edu.co.diegoxs96.Client.Controller.CrearTicketController"
             xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/17">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="600.0"
-                style="-fx-background-color: white;">
+                style="-fx-background-color: #bdbdbd;">
       <children>
-        <Label layoutX="253.0" layoutY="25.0" text="Ticket">
-          <font><Font name="System Bold" size="32.0"/></font>
-        </Label>
+        <!-- Botones laterales -->
+        <Button layoutX="14.0" layoutY="5.0"   prefHeight="30.0" prefWidth="170.0" text="Editar Perfil"       onAction="#handleEditarPerfil"/>
+        <Button layoutX="14.0" layoutY="41.0"  prefHeight="30.0" prefWidth="170.0" text="Solicitar Cita"      onAction="#handleSolicitarCita"/>
+        <Button layoutX="14.0" layoutY="78.0"  prefHeight="30.0" prefWidth="170.0" text="Ver Cita"            onAction="#handleVerCita"/>
+        <Button layoutX="14.0" layoutY="115.0" prefHeight="30.0" prefWidth="170.0" text="Modificar Cita"      onAction="#handleModificarCita"/>
+        <Button layoutX="14.0" layoutY="151.0" prefHeight="30.0" prefWidth="170.0" text="Obtener Ticket"      onAction="#handleObtenerTicket"/>
+        <Button layoutX="14.0" layoutY="188.0" prefHeight="30.0" prefWidth="170.0" text="Consultar Turno"     onAction="#handleConsultarTurno"/>
+        <Button layoutX="14.0" layoutY="225.0" prefHeight="30.0" prefWidth="170.0" text="Historial de Cita"   onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="261.0" prefHeight="30.0" prefWidth="170.0" text="Cancelar Cita"       onAction="#handleCancelarCita"/>
+        <Button layoutX="14.0" layoutY="298.0" prefHeight="30.0" prefWidth="170.0" text="Solicitar Consulta"  onAction="#handleSolicitarConsulta"/>
 
-        <Pane layoutX="199.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0"
-              style="-fx-background-color: #bdbdbd;">
+        <!-- Panel ticket -->
+        <Pane layoutX="206.0" layoutY="14.0" prefHeight="348.0" prefWidth="358.0"
+              style="-fx-background-color: white;">
           <children>
-            <Label fx:id="labelNumeroTicket" layoutX="70.0" layoutY="25.0" text="T000">
+            <Label layoutX="129.0" layoutY="14.0" text="Ticket">
+              <font><Font name="System Bold" size="32.0"/></font>
+            </Label>
+            <Label fx:id="labelNumeroTicket" layoutX="144.0" layoutY="82.0" text="T000">
               <font><Font name="System Bold" size="26.0"/></font>
             </Label>
-            <Label layoutX="32.0" layoutY="71.0" text="Tipo de Cita"/>
-            <MenuButton fx:id="menuTipoCita" layoutX="25.0" layoutY="88.0"
+            <Label layoutX="102.0" layoutY="135.0" text="Tipo de Cita"/>
+            <MenuButton fx:id="menuTipoCita" layoutX="104.0" layoutY="152.0"
                         prefHeight="25.0" prefWidth="151.0" text="Seleccionar">
               <items>
                 <MenuItem text="Reclamo"    onAction="#handleTipoReclamo"/>
@@ -39,13 +49,12 @@
                 <MenuItem text="Devolución" onAction="#handleTipoDevolucion"/>
               </items>
             </MenuButton>
-            <Label fx:id="labelFecha" layoutX="32.0" layoutY="129.0" text="Fecha: -"/>
+            <Label fx:id="labelFecha" layoutX="102.0" layoutY="208.0" text="Fecha: -"/>
+            <Label fx:id="labelMensaje" layoutX="60.0" layoutY="290.0" prefWidth="240.0" text=""/>
+            <Button layoutX="122.0" layoutY="246.0" prefHeight="36.0" prefWidth="104.0"
+                    text="Crear Ticket" onAction="#handleCrearTicket"/>
           </children>
         </Pane>
-
-        <Label fx:id="labelMensaje" layoutX="199.0" layoutY="305.0" prefWidth="200.0" text=""/>
-        <Button layoutX="249.0" layoutY="330.0" prefHeight="34.0" prefWidth="100.0"
-                text="Crear Ticket" onAction="#handleCrearTicket"/>
       </children>
     </AnchorPane>
   </content>

@@ -1,8 +1,12 @@
 package edu.co.diegoxs96.Client.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.stage.Stage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,9 +37,26 @@ public class CrearTicketController {
             labelMensaje.setText("Selecciona un tipo de cita.");
             return;
         }
-        // Aquí se conectará con TicketInterface vía RMI
         labelMensaje.setStyle("-fx-text-fill: green;");
         labelMensaje.setText("Ticket creado correctamente.");
         labelNumeroTicket.setText("T001");
+    }
+
+    @FXML private void handleEditarPerfil()      { navegar("/edu/co/diegoxs96/views/Cliente/EditarPerfilCliente.fxml"); }
+    @FXML private void handleSolicitarCita()     { System.out.println("[TICKET] Solicitar cita — pendiente"); }
+    @FXML private void handleVerCita()           { System.out.println("[TICKET] Ver cita — pendiente"); }
+    @FXML private void handleModificarCita()     { System.out.println("[TICKET] Modificar cita — pendiente"); }
+    @FXML private void handleObtenerTicket()     { System.out.println("[TICKET] Ya estás aquí"); }
+    @FXML private void handleConsultarTurno()    { navegar("/edu/co/diegoxs96/views/Cliente/ConsultarTurno.fxml"); }
+    @FXML private void handleHistorial()         { navegar("/edu/co/diegoxs96/views/Cliente/HistorialCliente.fxml"); }
+    @FXML private void handleCancelarCita()      { System.out.println("[TICKET] Cancelar cita — pendiente"); }
+    @FXML private void handleSolicitarConsulta() { System.out.println("[TICKET] Solicitar consulta — pendiente"); }
+
+    private void navegar(String ruta) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(ruta));
+            Stage stage = (Stage) menuTipoCita.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) { e.printStackTrace(); }
     }
 }

@@ -1,7 +1,5 @@
 package edu.co.diegoxs96.Client.Controller;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import edu.co.diegoxs96.Environment.Environment;
 import edu.co.diegoxs96.Server.Model.TicketInterface;
 import javafx.fxml.FXML;
@@ -14,10 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.rmi.Naming;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginViewController {
 
@@ -27,16 +22,7 @@ public class LoginViewController {
 
     private TicketInterface service;
 
-    // DTO interno para leer el JSON de admins
-    private static class AdminDTO {
-        String numeroIdentificacion;
-        String contrasena;
-    }
-
-    @FXML
-    private void initialize() {
-        conectarServidor();
-    }
+    @FXML private void initialize() { conectarServidor(); }
 
     @FXML
     private void handleLogin() {
@@ -47,41 +33,18 @@ public class LoginViewController {
             labelError.setText("Completa todos los campos.");
             return;
         }
-
         if (service == null) {
             labelError.setText("Sin conexión al servidor.");
             return;
         }
-
-        try {
-            Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            // Puede ser admin con id no numérico — seguimos igual
-        }
-
-        if (esAdmin(id, password)) {
-            irAMenuAdmin();
-        } else {
-            irAlMenu();
-        }
+        if (esAdmin(id, password)) irAMenuAdmin();
+        else irAlMenu();
     }
 
-    //Verifica si el id y contraseña están en data/admins.json
-    private boolean esAdmin(String id, String contrasena) {
-        File file = new File("data/admins.json");
-        if (!file.exists()) return false;
-
-        try (BufferedReader r = new BufferedReader(new FileReader(file))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = r.readLine()) != null) sb.append(line);
-            String json = sb.toString();
-            return json.contains("\"" + id + "\"")
-                    && json.contains("\"" + contrasena + "\"");
-        } catch (IOException e) {
-            System.out.println("[LOGIN] Error leyendo admins.json: " + e.getMessage());
-            return false;
-        }
+    @FXML
+    private void handleCancelar() {
+        Stage stage = (Stage) fieldIdentificacion.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -96,10 +59,24 @@ public class LoginViewController {
         }
     }
 
+    private boolean esAdmin(String id, String contrasena) {
+        File file = new File("data/admins.json");
+        if (!file.exists()) return false;
+        try (BufferedReader r = new BufferedReader(new FileReader(file))) {
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = r.readLine()) != null) sb.append(line);
+            String json = sb.toString();
+            return json.contains("\"" + id + "\"") && json.contains("\"" + contrasena + "\"");
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     private void irAlMenu() {
         try {
-            var url = getClass().getResource("/edu/co/diegoxs96/views/Cliente/Menu.fxml");
-            Parent root = FXMLLoader.load(url);
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/edu/co/diegoxs96/views/Cliente/Menu.fxml"));
             Stage stage = (Stage) fieldIdentificacion.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) {

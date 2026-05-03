@@ -38,5 +38,15 @@
     "edad": 65,
     "direccion": "UPB",
     "tipoCliente": 1
+  },
+  {
+    "id": 5,
+    "numeroIdentificacion": "1111",
+    "nombres": "Peña",
+    "apellidos": "Sexo",
+    "contraseña": "sexo",
+    "edad": 18,
+    "direccion": "UPB",
+    "tipoCliente": 1
   }
 ]
