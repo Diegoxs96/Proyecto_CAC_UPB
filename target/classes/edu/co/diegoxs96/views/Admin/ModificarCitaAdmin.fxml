@@ -14,9 +14,9 @@
 
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0"
-            text="UPB-CAC- Modificar cita cliente"
+            text="UPB-CAC- Modificar cita Admin"
             xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.co.diegoxs96.Client.Controller.ModificarCitaController">
+            fx:controller="edu.co.diegoxs96.Client.Controller.ModificarCitaAdminController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="650.0"
                 style="-fx-background-color: #bdbdbd;">
@@ -24,30 +24,30 @@
 
         <!-- Sidebar -->
         <Button layoutX="14.0" layoutY="29.0"  prefHeight="36.0" prefWidth="126.0" text="Editar Perfil"   mnemonicParsing="false" onAction="#handleEditarPerfil"/>
-        <Button layoutX="14.0" layoutY="80.0"  prefHeight="36.0" prefWidth="126.0" text="Solicitar Cita"  mnemonicParsing="false" onAction="#handleSolicitarCita"/>
+        <Button layoutX="14.0" layoutY="80.0"  prefHeight="36.0" prefWidth="126.0" text="Buscar Cliente"  mnemonicParsing="false" onAction="#handleBuscarCliente"/>
         <Button layoutX="14.0" layoutY="130.0" prefHeight="36.0" prefWidth="126.0" text="Ver Cita"        mnemonicParsing="false" onAction="#handleVerCita"/>
         <Button layoutX="14.0" layoutY="178.0" prefHeight="36.0" prefWidth="126.0" text="Modificar Cita"  mnemonicParsing="false" onAction="#handleModificarCita"/>
-        <Button layoutX="14.0" layoutY="225.0" prefHeight="36.0" prefWidth="126.0" text="Consultar Turno" mnemonicParsing="false" onAction="#handleConsultarTurno"/>
-        <Button layoutX="14.0" layoutY="275.0" prefHeight="36.0" prefWidth="126.0" text="Historial Cita"  mnemonicParsing="false" onAction="#handleHistorial"/>
-        <Button layoutX="14.0" layoutY="325.0" prefHeight="36.0" prefWidth="126.0" text="Cancelar Cita"   mnemonicParsing="false" onAction="#handleCancelarCita"/>
+        <Button layoutX="14.0" layoutY="225.0" prefHeight="36.0" prefWidth="126.0" text="Historial Cita"  mnemonicParsing="false" onAction="#handleHistorial"/>
+        <Button layoutX="14.0" layoutY="275.0" prefHeight="36.0" prefWidth="126.0" text="Menu"            mnemonicParsing="false" onAction="#handleMenu"/>
 
         <!-- Panel derecho -->
         <Pane layoutX="152.0" layoutY="10.0" prefHeight="440.0" prefWidth="486.0"
               style="-fx-background-color: #E6E6E6;">
           <children>
 
-            <!-- Tabla de citas -->
+            <!-- Tabla de todas las citas -->
             <Label layoutX="10.0" layoutY="8.0" text="Selecciona la cita a modificar:">
               <font><Font name="System Bold" size="12.0"/></font>
             </Label>
             <TableView fx:id="tablaCitas" layoutX="10.0" layoutY="28.0"
                        prefHeight="130.0" prefWidth="465.0">
               <columns>
-                <TableColumn fx:id="colId"     prefWidth="55.0"  text="ID"/>
-                <TableColumn fx:id="colTipoT"  prefWidth="80.0"  text="Tipo"/>
-                <TableColumn fx:id="colFechaT" prefWidth="80.0"  text="Fecha"/>
-                <TableColumn fx:id="colHoraT"  prefWidth="60.0"  text="Hora"/>
-                <TableColumn fx:id="colEstadoT" prefWidth="80.0" text="Estado"/>
+                <TableColumn fx:id="colId"      prefWidth="45.0"  text="ID"/>
+                <TableColumn fx:id="colCliente" prefWidth="100.0" text="Cliente"/>
+                <TableColumn fx:id="colTipoT"   prefWidth="80.0"  text="Tipo"/>
+                <TableColumn fx:id="colFechaT"  prefWidth="75.0"  text="Fecha"/>
+                <TableColumn fx:id="colHoraT"   prefWidth="55.0"  text="Hora"/>
+                <TableColumn fx:id="colEstadoT" prefWidth="70.0"  text="Estado"/>
               </columns>
             </TableView>
 
@@ -94,6 +94,8 @@
 
             <Button layoutX="160.0" layoutY="360.0" prefHeight="36.0" prefWidth="92.0"
                     text="Guardar" mnemonicParsing="false" onAction="#handleGuardar"/>
+            <Button layoutX="270.0" layoutY="360.0" prefHeight="36.0" prefWidth="92.0"
+                    text="Cancelar Cita" mnemonicParsing="false" onAction="#handleCancelarCita"/>
 
           </children>
         </Pane>

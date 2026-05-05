@@ -2,12 +2,40 @@
   {
     "id": 1,
     "numeroTurno": 1,
-    "citaId": 1,
-    "clienteId": 3,
-    "prioridad": 0,
-    "estado": 0,
-    "horaEmision": "16:10:47.198358600",
-    "bancoId": 1,
-    "bancoNombre": "Banco Reclamos"
+    "citaId": 2,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipoCita": 1,
+    "prioridad": 3,
+    "estado": 2,
+    "horaEmision": "19:18:09.389331300",
+    "bancoId": 2,
+    "bancoNombre": "Banco Devoluciones"
+  },
+  {
+    "id": 2,
+    "numeroTurno": 2,
+    "citaId": 3,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipoCita": 1,
+    "prioridad": 3,
+    "estado": 2,
+    "horaEmision": "19:18:14.164512900",
+    "bancoId": 2,
+    "bancoNombre": "Banco Devoluciones"
+  },
+  {
+    "id": 3,
+    "numeroTurno": 3,
+    "citaId": 4,
+    "clienteId": 5,
+    "clienteNombre": "Peña Sexo",
+    "tipoCita": 1,
+    "prioridad": 2,
+    "estado": 2,
+    "horaEmision": "19:18:31.645369200",
+    "bancoId": 2,
+    "bancoNombre": "Banco Devoluciones"
   }
 ]

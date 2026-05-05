@@ -17,39 +17,44 @@ public class MenuAdminController {
     @FXML private TextField  fieldCapacidadCola;
     @FXML private TextField  fieldMaxSesiones;
 
-    // ── Botones laterales ──
-    @FXML private void handleEditarPerfil()      { navegar("/edu/co/diegoxs96/views/Admin/EditarPerfilAdmin.fxml"); }
-    @FXML private void handleBuscarCliente()     { navegar("/edu/co/diegoxs96/views/Admin/BuscarCliente.fxml"); }
-    @FXML private void handleVerCita()           { System.out.println("[ADMIN] Ver cita — pendiente"); }
-    @FXML private void handleModificarCita()     { System.out.println("[ADMIN] Modificar cita — pendiente"); }
-    @FXML private void handleConsultarTurno()    { System.out.println("[ADMIN] Consultar turno — pendiente"); }
-    @FXML private void handleHistorial() { navegar("/edu/co/diegoxs96/views/Admin/HistorialAdmin.fxml"); }
-    @FXML private void handleSolicitarConsulta() { System.out.println("[ADMIN] Solicitar consulta — pendiente"); }
+    // ── Sidebar ──────────────────────────────────────────────────────────────
 
-    // ── Sistema ──
-    @FXML private void handleIniciarSistema() { System.out.println("[ADMIN] Sistema iniciado"); }
-    @FXML private void handleCerrarSistema()  { System.out.println("[ADMIN] Sistema cerrado"); }
+    @FXML private void handleEditarPerfil()  { navegar("/edu/co/diegoxs96/views/Admin/EditarPerfilAdmin.fxml"); }
+    @FXML private void handleBuscarCliente() { navegar("/edu/co/diegoxs96/views/Admin/BuscarCliente.fxml"); }
+    @FXML private void handleVerCita()       { navegar("/edu/co/diegoxs96/views/Admin/VerCitaAdmin.fxml"); }
+    @FXML private void handleModificarCita() { navegar("/edu/co/diegoxs96/views/Admin/ModificarCitaAdmin.fxml"); }
+    @FXML private void handleHistorial()     { navegar("/edu/co/diegoxs96/views/Admin/HistorialAdmin.fxml"); }
+    @FXML private void handleMenu()          { System.out.println("[ADMIN] Ya estás aquí"); }
 
-    // ── Días ──
+    @FXML
+    private void handleCerrarSesion() {
+        Sesion.getInstance().cerrar();
+        navegar("/edu/co/diegoxs96/views/InicioDeSesion/login.fxml");
+    }
+
+    // ── Días ─────────────────────────────────────────────────────────────────
+
     @FXML private void handleDiasLV()    { menuDias.setText("Lunes-Viernes"); }
     @FXML private void handleDiasLS()    { menuDias.setText("Lunes-Sábado"); }
     @FXML private void handleDiasTodos() { menuDias.setText("Todos los días"); }
 
-    // ── Guardar configuración ──
+    // ── Guardar configuración ─────────────────────────────────────────────────
+
     @FXML
     private void handleGuardar() {
-        System.out.println("[ADMIN] Guardando configuración:");
-        System.out.println("  Tiempo atención   : " + fieldTiempoAtencion.getText());
+        System.out.println("[ADMIN] Configuración guardada:");
+        System.out.println("  Días             : " + menuDias.getText());
+        System.out.println("  Tiempo atención  : " + fieldTiempoAtencion.getText());
         System.out.println("  Tiempo vencimiento: " + fieldTiempoVencimiento.getText());
-        System.out.println("  Sesión inactiva   : " + fieldSesionInactiva.getText());
-        System.out.println("  Capacidad cola    : " + fieldCapacidadCola.getText());
-        System.out.println("  Max sesiones      : " + fieldMaxSesiones.getText());
+        System.out.println("  Sesión inactiva  : " + fieldSesionInactiva.getText());
+        System.out.println("  Capacidad cola   : " + fieldCapacidadCola.getText());
+        System.out.println("  Max sesiones     : " + fieldMaxSesiones.getText());
     }
 
     private void navegar(String ruta) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(ruta));
-            Stage stage = (Stage) menuDias.getScene().getWindow();
+            Stage stage  = (Stage) menuDias.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (Exception e) { e.printStackTrace(); }
     }

@@ -40,11 +40,11 @@ public class ServerController {
     /** Crea los bancos de servicio por defecto con sus colas. */
     private void inicializarBancos() {
         // Banco 1 — cola con prioridad (premium y mayores de 60 primero)
-        BancoServicio b1 = new BancoServicio(1, "Banco Reclamos", "Sala A - Ventanilla 1", 20, new ColaPrioridad());
+        BancoServicio b1 = new BancoServicio(1, "Banco Reclamos", "Sala A - Ventanilla 1", 20, 0, new ColaPrioridad());
         // Banco 2 — cola FIFO para devoluciones
-        BancoServicio b2 = new BancoServicio(2, "Banco Devoluciones", "Sala A - Ventanilla 2", 20, new ColaBancaria());
+        BancoServicio b2 = new BancoServicio(2, "Banco Devoluciones", "Sala A - Ventanilla 2", 20, 1, new ColaBancaria());
         // Banco 3 — cola con prioridad para asesorías
-        BancoServicio b3 = new BancoServicio(3, "Banco Asesorías", "Sala B - Ventanilla 1", 15, new ColaPrioridad());
+        BancoServicio b3 = new BancoServicio(3, "Banco Asesorías", "Sala B - Ventanilla 1", 15, 2, new ColaPrioridad());
 
         // Añadir monitor de sala a cada banco
         b1.addMonitor(new MonitorSala(b1));

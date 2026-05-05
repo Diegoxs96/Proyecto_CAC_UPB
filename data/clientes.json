@@ -34,9 +34,9 @@
     "numeroIdentificacion": "1000",
     "nombres": "usuario",
     "apellidos": "random",
-    "contraseña": "12345",
+    "contraseña": "peña123",
     "edad": 65,
-    "direccion": "Casa de Peña",
+    "direccion": "UPB",
     "tipoCliente": 1
   },
   {
@@ -47,6 +47,16 @@
     "contraseña": "sexo",
     "edad": 18,
     "direccion": "UPB",
+    "tipoCliente": 1
+  },
+  {
+    "id": 6,
+    "numeroIdentificacion": "2000",
+    "nombres": "Tung Tung",
+    "apellidos": "Sahur",
+    "contraseña": "TripleT",
+    "edad": 42,
+    "direccion": "Roba un Brainrot",
     "tipoCliente": 1
   }
 ]

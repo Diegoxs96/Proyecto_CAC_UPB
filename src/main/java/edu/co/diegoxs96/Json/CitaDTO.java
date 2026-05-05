@@ -10,6 +10,7 @@ public class CitaDTO implements Serializable {
 
     public int    id;
     public int    clienteId;
+    public String clienteNombre;
     public String tipo;
     public String fecha;
     public String hora;
@@ -19,9 +20,10 @@ public class CitaDTO implements Serializable {
     public CitaDTO() {}
 
     public CitaDTO(Cita c) {
-        this.id        = c.getId();
-        this.clienteId = c.getCliente().getId();
-        this.tipo      = tipoLabel(c.getTipoCita());
+        this.id            = c.getId();
+        this.clienteId     = c.getCliente().getId();
+        this.clienteNombre = c.getCliente().getNombreCompleto();
+        this.tipo          = tipoLabel(c.getTipoCita());
         this.fecha = extraerFecha(c.getFechaHora());
         this.hora  = extraerHora(c.getFechaHora());
         this.banco = c.getLugar();

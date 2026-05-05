@@ -20,12 +20,15 @@ public class GestorBancos {
     }
 
     public BancoServicio obtenerDisponible(int tipoCita) {
-        BancoServicio mejor   = null;
+        BancoServicio mejor    = null;
         int           minCarga = Integer.MAX_VALUE;
         Iterator<BancoServicio> it = bancos.iterator();
         while (it.hasNext()) {
             BancoServicio b = it.next();
-            if (b.isActivo() && b.estaDisponible() && b.getPersonasEnEspera() < minCarga) {
+            if (b.getTipoCita() == tipoCita
+                    && b.isActivo()
+                    && b.estaDisponible()
+                    && b.getPersonasEnEspera() < minCarga) {
                 mejor    = b;
                 minCarga = b.getPersonasEnEspera();
             }

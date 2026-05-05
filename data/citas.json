@@ -2,6 +2,7 @@
   {
     "id": 1,
     "clienteId": 4,
+    "clienteNombre": "usuario random",
     "tipo": "Asesoría",
     "fecha": "04/05/2026",
     "hora": "10AM",
@@ -11,6 +12,7 @@
   {
     "id": 2,
     "clienteId": 4,
+    "clienteNombre": "usuario random",
     "tipo": "Devolución",
     "fecha": "05/05/05",
     "hora": "12PM",
@@ -20,9 +22,80 @@
   {
     "id": 3,
     "clienteId": 4,
+    "clienteNombre": "usuario random",
     "tipo": "Devolución",
     "fecha": "06/06/2026",
     "hora": "4PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 4,
+    "clienteId": 5,
+    "clienteNombre": "Peña Sexo",
+    "tipo": "Devolución",
+    "fecha": "06/08/2026",
+    "hora": "4PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 5,
+    "clienteId": 5,
+    "clienteNombre": "Peña Sexo",
+    "tipo": "Asesoría",
+    "fecha": "04/05/2026",
+    "hora": "8AM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 6,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipo": "Reclamo",
+    "fecha": "04/05/2026",
+    "hora": "12PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 7,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipo": "Asesoría",
+    "fecha": "05/05/2026",
+    "hora": "10AM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 8,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipo": "Devolución",
+    "fecha": "05/05/2026",
+    "hora": "4PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 9,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipo": "Reclamo",
+    "fecha": "05/05/2026",
+    "hora": "12PM",
+    "banco": "Ventanilla",
+    "estado": "Pendiente"
+  },
+  {
+    "id": 10,
+    "clienteId": 4,
+    "clienteNombre": "usuario random",
+    "tipo": "Asesoría",
+    "fecha": "05/05/2026",
+    "hora": "2PM",
     "banco": "Ventanilla",
     "estado": "Pendiente"
   }

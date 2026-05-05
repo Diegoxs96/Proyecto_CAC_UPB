@@ -5,10 +5,10 @@ import edu.co.diegoxs96.Server.Model.*;
 import edu.co.diegoxs96.structures.linkedlist.singly.LinkedList;
 import edu.co.diegoxs96.structures.model.iterator.Iterator;
 
-
- // Emite tickets y los asigna al banco correcto.
- // LinkedList<Ticket> ticketsActivos → seguimiento de todos los tickets en curso.
-
+/**
+ * Emite tickets y los asigna al banco correcto.
+ * LinkedList<Ticket> ticketsActivos → seguimiento de todos los tickets en curso.
+ */
 public class GestorTickets {
 
     private final LinkedList<Ticket> ticketsActivos = new LinkedList<>();
@@ -16,6 +16,8 @@ public class GestorTickets {
     private final TicketJson         repo           = new TicketJson();
     private int contadorTurno = 1;
     private int contadorId    = 1;
+    private Ticket ultimoTicket  = null;
+    private Ticket ticketLlamado = null;
 
     public GestorTickets(GestorBancos gestorBancos) {
         this.gestorBancos = gestorBancos;
@@ -31,9 +33,15 @@ public class GestorTickets {
         banco.agregarTicket(t);
         ticketsActivos.add(t);
         cita.setTicket(t);
+        ultimoTicket = t;
         guardarEnJSON();
         return t;
     }
+
+    public Ticket getUltimoTicket()          { return ultimoTicket; }
+    public void   setUltimoTicket(Ticket t)  { this.ultimoTicket = t; }
+    public Ticket getTicketLlamado()          { return ticketLlamado; }
+    public void   setTicketLlamado(Ticket t)  { this.ticketLlamado = t; }
 
     public int calcularPrioridad(Cliente c) { return c.getPrioridad(); }
 

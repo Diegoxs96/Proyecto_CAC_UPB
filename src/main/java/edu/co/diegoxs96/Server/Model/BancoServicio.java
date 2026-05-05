@@ -11,6 +11,7 @@ public class BancoServicio {
     private String           nombre;
     private String           ubicacion;
     private int              capacidadMaxima;
+    private int              tipoCita;        // 0=Reclamo, 1=Devolucion, 2=Asesoria
     private IColaBancaria    cola;
     private OperadorAtencion operador;
     private boolean          activo;
@@ -18,11 +19,12 @@ public class BancoServicio {
     private final LinkedList<INotificable> monitores = new LinkedList<>();
 
     public BancoServicio(int id, String nombre, String ubicacion,
-                         int capacidadMaxima, IColaBancaria cola) {
+                         int capacidadMaxima, int tipoCita, IColaBancaria cola) {
         this.id              = id;
         this.nombre          = nombre;
         this.ubicacion       = ubicacion;
         this.capacidadMaxima = capacidadMaxima;
+        this.tipoCita        = tipoCita;
         this.cola            = cola;
         this.activo          = true;
     }
@@ -38,6 +40,7 @@ public class BancoServicio {
     public String getNombre()          { return nombre; }
     public String getUbicacion()       { return ubicacion; }
     public int    getCapacidadMaxima() { return capacidadMaxima; }
+    public int    getTipoCita()        { return tipoCita; }
     public OperadorAtencion getOperador()            { return operador; }
     public void   setOperador(OperadorAtencion o)    { this.operador = o; }
     public boolean isActivo()          { return activo; }

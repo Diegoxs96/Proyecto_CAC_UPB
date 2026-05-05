@@ -15,6 +15,24 @@ public interface TicketInterface extends Remote {
     int    consultarPosicion(int ticketId)          throws RemoteException;
     Ticket verFrente(int bancoId)                   throws RemoteException;
 
+    // Máquina de entrada: valida cita y emite ticket
+    TicketDTO procesarEntrada(String numeroIdentificacion, int citaId) throws RemoteException;
+
+    // Monitor: devuelve el último ticket emitido para polling
+    TicketDTO obtenerUltimoTicket() throws RemoteException;
+
+    // Monitor: devuelve el ticket actualmente siendo atendido (llamado por operador)
+    TicketDTO obtenerTicketEnAtencion() throws RemoteException;
+
+    // VerCitaBanco: lista tickets activos de un banco
+    ArrayList<TicketDTO> listarTicketsPorBanco(int bancoId) throws RemoteException;
+
+    // VerCitaBanco: marca el ticket seleccionado como atendido
+    boolean marcarAtendido(int ticketId) throws RemoteException;
+
+    // VerCitaBanco: llama al siguiente en la cola del banco y actualiza monitor
+    TicketDTO siguienteCita(int bancoId) throws RemoteException;
+
     // Emite un ticket creando la cita internamente (sin citaId previo)
     TicketDTO emitirTicketDirecto(int clienteId, int tipoCita) throws RemoteException;
 
@@ -27,8 +45,14 @@ public interface TicketInterface extends Remote {
     // Modifica la primera cita vigente del cliente
     boolean modificarCita(int clienteId, String fechaHora, int tipoCita, String motivo) throws RemoteException;
 
+    // Modifica una cita por su id directo (vista admin)
+    boolean modificarCitaAdmin(int citaId, String fechaHora, int tipoCita, String motivo) throws RemoteException;
+
     // Busca un cliente por su numeroIdentificacion
     ClienteDTO buscarCliente(String numeroIdentificacion) throws RemoteException;
+
+    // Trae todas las citas del sistema (vista admin)
+    ArrayList<CitaDTO> listarTodasCitas() throws RemoteException;
 
     // Trae las citas activas de un cliente para VerCita
     ArrayList<CitaDTO> listarCitasPorCliente(int clienteId) throws RemoteException;
